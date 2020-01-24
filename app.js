@@ -21,7 +21,7 @@ app.use(express.json());
 app.listen(process.env.PORT || port, () => console.log(`Webhook is listening in ${port}`));
 
 // Default get request
-app.get((req, res) => {
+app.get('/', (req, res) => {
     res.send('GET request to homepage');
 });
 
