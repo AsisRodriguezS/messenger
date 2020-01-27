@@ -3,7 +3,9 @@
 const 
 express = require('express'),
 app = express(),
-request = require('request');
+request = require('request'),
+VERIFY_TOKEN = process.env.VERIFY_TOKEN,
+PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 // Get request for base url
 app.post('/webhook', (req,res) => {
@@ -45,7 +47,7 @@ app.post('/webhook', (req,res) => {
     // Adds support for GET requests to our webhook
     app.get('/webhook', (req, res) => {
         // Your verify token. Should be a random string.
-        let VERIFY_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+        // let VERIFY_TOKEN = process.env.PAGE_ACCESS_TOKEN;
         
         // Parse the query params
         let mode = req.query['hub.mode'];
@@ -99,7 +101,7 @@ app.post('/webhook', (req,res) => {
         // Send the HTTP request to the Messenger Platform
         request({
             "uri": "https://graph.facebook.com/v5.0/me/messages",
-            "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
+            "qs": { "access_token": PAGE_ACCESS_TOKEN },
             "method": "POST",
             "json": request_body
         }, (err, res, body) => {
