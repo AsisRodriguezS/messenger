@@ -1,8 +1,12 @@
 'use strict';
 
 const 
-    express = require('express'),
-    app = express();
+express = require('express'),
+app = express();
+
+function handleMessage(sender_psid, received_message) {
+    res.status(200).send('EXITO');
+}
 
 // Get request for base url
 app.post('/webhook', (req,res) => {
@@ -62,8 +66,5 @@ app.get('/webhook', (req, res) => {
 
 });
 
-function handleMessage(sender_psid, received_message) {
-    res.status(200).send('EVENT_RECEIVED');
-}
 
 module.exports = app;
