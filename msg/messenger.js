@@ -23,8 +23,8 @@ app.post('/webhook', (req,res) => {
 
         if (webhook_event.message) {
             handleMessage(sender_psid, webhook_event.message);        
-          } else (webhook_event.postback) {
-            res.sendStatus(404);;
+        } else {
+            res.sendStatus(404);
         }
 
         // Returns a '200 OK' response to all requests
@@ -32,7 +32,7 @@ app.post('/webhook', (req,res) => {
     // } else {
     //     // Returns a '404 Not Found' if event is not from a page subscription
     //     res.sendStatus(404);
-    // }
+    }
 });
 
 // Adds support for GET requests to our webhook
