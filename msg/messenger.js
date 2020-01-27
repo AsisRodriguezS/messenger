@@ -1,7 +1,7 @@
 'use strict';
 
 const 
-    express = require('express');
+    express = require('express'),
     app = express();
 
 // Get request for base url
