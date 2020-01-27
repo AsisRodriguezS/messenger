@@ -56,4 +56,4 @@ app.get('/webhook', (req, res) => {
 
 });
 
-exports.module = app;
+module.exports = app;
