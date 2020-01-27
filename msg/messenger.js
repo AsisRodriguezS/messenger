@@ -22,7 +22,7 @@ app.post('/webhook', (req,res) => {
         });
         
         if (webhook_event.message) {
-            handleMessage(sender_psid, webhook_event.message);        
+            handleMessage();        
         } else {
             res.sendStatus(404);
         }
@@ -62,7 +62,7 @@ app.post('/webhook', (req,res) => {
         
     });
     
-    app.use(function handleMessage(sender_psid, received_message) {
+    app.use(function handleMessage() {
         res.status(200).send('EXITO');
     });
     
