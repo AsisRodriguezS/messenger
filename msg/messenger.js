@@ -25,7 +25,7 @@ app.post('/webhook', (req,res) => {
             } else {
                 res.sendStatus(404);
             }
-            
+
         });
         
         
@@ -64,8 +64,8 @@ app.post('/webhook', (req,res) => {
         
     });
     
-    app.use(function handleMessage() {
+    function handleMessage() {
         res.status(200).send('EXITO');
-    });
+    }
     
     module.exports = app;
