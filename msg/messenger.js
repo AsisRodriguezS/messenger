@@ -21,12 +21,18 @@ app.post('/webhook', (req,res) => {
             console.log(webhook_event);
         });
 
+        if (webhook_event.message) {
+            handleMessage(sender_psid, webhook_event.message);        
+          } else (webhook_event.postback) {
+            res.sendStatus(404);;
+        }
+
         // Returns a '200 OK' response to all requests
-        res.status(200).send('EVENT_RECEIVED');
-    } else {
-        // Returns a '404 Not Found' if event is not from a page subscription
-        res.sendStatus(404);
-    }
+    //     res.status(200).send('EVENT_RECEIVED');
+    // } else {
+    //     // Returns a '404 Not Found' if event is not from a page subscription
+    //     res.sendStatus(404);
+    // }
 });
 
 // Adds support for GET requests to our webhook
@@ -55,5 +61,9 @@ app.get('/webhook', (req, res) => {
     }
 
 });
+
+function handleMessage(sender_psid, received_message) {
+    res.status(200).send('EVENT_RECEIVED');
+}
 
 module.exports = app;
