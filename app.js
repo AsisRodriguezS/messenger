@@ -25,4 +25,4 @@ app.get('/', (req, res) => {
     res.send('GET request to homepage');
 });
 
-app.use('/', require('./routes/routes'));
+// app.use('/', require('./routes/routes'));
