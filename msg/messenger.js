@@ -21,7 +21,7 @@ app.post('/webhook', (req,res) => {
             console.log(webhook_event.message);
 
             if (webhook_event.message) {
-                handleMessage();        
+                handleMessage(res);        
             } else {
                 res.sendStatus(404);
             }
@@ -64,7 +64,7 @@ app.post('/webhook', (req,res) => {
         
     });
     
-    function handleMessage() {
+    function handleMessage(res) {
         res.status(200).send('EXITO');
     }
     
