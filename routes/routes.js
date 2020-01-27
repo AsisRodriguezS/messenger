@@ -9,6 +9,6 @@ const
 
     router.route('/').get((req, res) => res.send('GET request to homepage'));
 
-    router.use(require('../msg/messenger'));
+    // router.use(require('../msg/messenger'));
 
     module.exports = router;
