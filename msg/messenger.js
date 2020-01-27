@@ -19,13 +19,15 @@ app.post('/webhook', (req,res) => {
             
             let webhook_event = entry.messaging[0];
             console.log(webhook_event.message);
+
+            if (webhook_event.message) {
+                handleMessage();        
+            } else {
+                res.sendStatus(404);
+            }
+            
         });
         
-        if (webhook_event.message) {
-            handleMessage();        
-        } else {
-            res.sendStatus(404);
-        }
         
         // Returns a '200 OK' response to all requests
         //     res.status(200).send('EVENT_RECEIVED');
