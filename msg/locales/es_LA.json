@@ -1,0 +1,9 @@
+{
+    "profile": {
+        "greeting": "¡Bienvenido a Yoinn.mx {{user_first_name}}!. Da click en Iniciar para conocer nuestros servicios"
+    },
+    "get_started": {
+        "welcome": "¡Hola {{user_first_name}}!. Te damos la bienvenida a Yoinn.mx, la empresa número uno en México en Innovación Digital",
+        "guidance": "Para que podamos ayudarte mejor, permitenos saber cuál de las dos siguientes categorias aplica a ti"
+    }
+}

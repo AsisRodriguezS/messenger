@@ -80,7 +80,7 @@ app.post('/webhook', (req,res) => {
             
             // Create the payload for a basic text message
             response = {
-                "text": `Mensaje ${received_message.text} recibido`
+                "text": `Mensaje "${received_message.text}" recibido`
             }
         }
 
