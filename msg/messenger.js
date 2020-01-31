@@ -75,9 +75,9 @@ app.post('/webhook', (req,res) => {
             // Check if the event is a message or postback and
             // pass the event to the appropriate handler function
             if (webhook_event.message) {
-                handleMessage(sender_psid, webhook_event.message);        
+                handleMessage(senderPsid, webhookEvent.message);        
             } else if (webhook_event.postback) {
-                handlePostback(sender_psid, webhook_event.postback);
+                handlePostback(senderPsid, webhookEvent.postback);
   }
             
         });
@@ -90,28 +90,28 @@ app.post('/webhook', (req,res) => {
     
     
     // Handles messages events
-    function handleMessage(sender_psid, received_message) {
+    function handleMessage(senderPsid, receivedMessage) {
         let response;
 
         // Check if the message contains text
-        if (received_message.text) {
+        if (receivedMessage.text) {
             
             // Create the payload for a basic text message
             response = {
-                "text": `Mensaje "${received_message.text}" recibido`
+                "text": `Mensaje "${receivedMessage.text}" recibido`
             }
         }
 
         // Sends the response message
-        callSendAPI(sender_psid, response);
+        callSendAPI(senderPsid, response);
     }
 
     // Sends response messages via the Send API
-    function callSendAPI(sender_psid, response) {
+    function callSendAPI(senderPsid, response) {
         // Construct the message body
-        let request_body = {
+        let requestBody = {
             "recipient":  {
-                "id": sender_psid
+                "id": senderPsid
             },
             "message": response
         }
@@ -121,7 +121,7 @@ app.post('/webhook', (req,res) => {
             "uri": "https://graph.facebook.com/v5.0/me/messages",
             "qs": { "access_token": PAGE_ACCESS_TOKEN },
             "method": "POST",
-            "json": request_body
+            "json": requestBody, users
         }, (err, res, body) => {
             if (!err) {
                 console.log('Mensaje enviado');
