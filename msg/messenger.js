@@ -58,6 +58,7 @@ app.post('/webhook', (req,res) => {
             if(!(senderPsid in users)) {
                 let user = new User(senderPsid);
                 console.log(senderPsid);
+                console.log(config.pageAccessToken);
 
                 GraphAPI.getUserProfile(senderPsid)
                     .then(userProfile => {
