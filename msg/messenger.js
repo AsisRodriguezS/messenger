@@ -120,7 +120,7 @@ app.post('/webhook', (req,res) => {
         // Send the HTTP request to the Messenger Platform
         request({
             "uri": "https://graph.facebook.com/v5.0/me/messages",
-            "qs": { "access_token": PAGE_ACCESS_TOKEN },
+            "qs": { "access_token": config.pageAccessToken },
             "method": "POST",
             "json": requestBody, users
         }, (err, res, body) => {
