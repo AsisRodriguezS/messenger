@@ -57,21 +57,24 @@ app.post('/webhook', (req,res) => {
             // Si el usuario no esta en users, crea uno nuevo
             if(!(senderPsid in users)) {
                 let user = new User(senderPsid);
+                GraphAPI.getUserProfile(senderPsid)
+                    .then(userProfile => {
+                        user.setProfile(userProfile);
+                    })
+                    .catch(error => {
+                        // Perfil no disponible
+                        console.log('El perfil no está disponible:', error);
+                    })
+                    .finally(() => {
+                        users[senderPsid] = user;
+                        i18n.setLocale(user.locale);
+                        console.log('Nuevo Perfil PSID:', senderPsid, 'con locale:', i18n.getLocale());
+                    });
+            } else {
+                i18n.setLocale(users[senderPsid]. locale);
+                console.log('El perfil ya existe, PSID:', senderPsid, 'con locale:', i18n.getLocale());
             }
 
-            GraphAPI.getUserProfile(senderPsid)
-                .then(userProfile => {
-                    user.setProfile(userProfile);
-                })
-                .catch(error => {
-                    // Perfil no disponible
-                    console.log('El perfil no está disponible:', error);
-                })
-                .finally(() => {
-                    users[senderPsid] = user;
-                    i18n.setLocale(user.locale);
-                    console.log('New Profile PSID:', senderPsid, 'with locale:', i18n.getLocale());
-                });
 
             // Check if the event is a message or postback and
             // pass the event to the appropriate handler function
@@ -114,7 +117,7 @@ app.post('/webhook', (req,res) => {
             "recipient":  {
                 "id": senderPsid
             },
-            "message": response
+            "message": response + 'de usuario' + user
         }
 
         // Send the HTTP request to the Messenger Platform
@@ -122,7 +125,7 @@ app.post('/webhook', (req,res) => {
             "uri": "https://graph.facebook.com/v5.0/me/messages",
             "qs": { "access_token": config.pageAccessToken },
             "method": "POST",
-            "json": requestBody, users
+            "json": requestBody
         }, (err, res, body) => {
             if (!err) {
                 console.log('Mensaje enviado');
