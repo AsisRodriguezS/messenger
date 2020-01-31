@@ -57,6 +57,8 @@ app.post('/webhook', (req,res) => {
             // Si el usuario no esta en users, crea uno nuevo
             if(!(senderPsid in users)) {
                 let user = new User(senderPsid);
+                console.log(senderPsid);
+
                 GraphAPI.getUserProfile(senderPsid)
                     .then(userProfile => {
                         user.setProfile(userProfile);
