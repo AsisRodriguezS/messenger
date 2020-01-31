@@ -2,12 +2,39 @@
 
 const 
 express = require('express'),
-app = express(),
-request = require('request'),
-VERIFY_TOKEN = process.env.VERIFY_TOKEN,
-PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+GraphAPI = require('./services/graph-api'),
+config = require('./services/config'),
+User = require('./services/user'),
+i18n = require('./idiomas/i18n.config'),
+app = express();
+// request = require('request'),
+// VERIFY_TOKEN = process.env.VERIFY_TOKEN,
+// PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
-// Get request for base url
+let users = {};
+
+// Adds support for GET requests to our webhook
+app.get('/webhook', (req, res) => {
+    // Parse the query params
+    let mode = req.query['hub.mode'];
+    let token = req.query['hub.verify_token'];
+    let challenge = req.query['hub.challenge'];
+    
+    // Checks if a token and mode is in the query string of the request
+    if (mode && token) {        
+        // Checks the mode and token sent is correct
+        if (mode === 'subscribe' && token === config.verifyToken) {            
+            // Responds with the challenge token from the request
+            console.log('WEBHOOK_VERIFIED');
+            res.status(200).send(challenge)
+        } else {
+            // Responds with '403 Forbidden' if verify tokens do not match
+            res.sendStatus(403); 
+        }
+    }    
+});
+
+// Creates the endpoint for your webhook
 app.post('/webhook', (req,res) => {
     let body = req.body;
     
@@ -17,16 +44,33 @@ app.post('/webhook', (req,res) => {
         res.status(200).send('EVENT_RECEIVED');
         
         // Iterates over each entry - there may be multiple if batched
-        body.entry.forEach(function(entry) {
-            
+        body.entry.forEach(function(entry) {            
             // Gets the message. entry.messaging is an array, but 
             // will only ever contain one message, so we get index 0            
-            let webhook_event = entry.messaging[0];
-            console.log(webhook_event.message);
+            let webhookEvent = entry.messaging[0];
+            console.log(webhookEvent.message);
 
             // Get the sender PSID
-            let sender_psid = webhook_event.sender.id;
-            console.log('Sender PSID: ' + sender_psid);
+            let senderPsid = webhookEvent.sender.id;
+
+            // Si el usuario no esta en users, crea uno nuevo
+            if(!(senderPsid in users)) {
+                let user = new User(senderPsid);
+            }
+
+            GraphAPI.getUserProfile(senderPsid)
+                .then(userProfile => {
+                    user.setProfile(userProfile);
+                })
+                .catch(error => {
+                    // Perfil no disponible
+                    console.log('El perfil no está disponible:', error);
+                })
+                .finally(() => {
+                    users[senderPsid] = user;
+                    i18n.setLocale(user.locale);
+                    console.log('New Profile PSID:', senderPsid, 'with locale:', i18n.getLocale());
+                });
 
             // Check if the event is a message or postback and
             // pass the event to the appropriate handler function
@@ -44,32 +88,6 @@ app.post('/webhook', (req,res) => {
     }
     });
     
-    // Adds support for GET requests to our webhook
-    app.get('/webhook', (req, res) => {
-        // Your verify token. Should be a random string.
-        // let VERIFY_TOKEN = process.env.PAGE_ACCESS_TOKEN;
-        
-        // Parse the query params
-        let mode = req.query['hub.mode'];
-        let token = req.query['hub.verify_token'];
-        let challenge = req.query['hub.challenge'];
-        
-        // Checks if a token and mode is in the query string of the request
-        if (mode && token) {
-            
-            // Checks the mode and token sent is correct
-            if (mode === 'subscribe' && token === VERIFY_TOKEN) {
-                
-                // Responds with the challenge token from the request
-                console.log('WEBHOOK_VERIFIED');
-                res.status(200).send(challenge)
-            } else {
-                // Responds with '403 Forbidden' if verify tokens do not match
-                res.sendStatus(403); 
-            }
-        }
-        
-    });
     
     // Handles messages events
     function handleMessage(sender_psid, received_message) {
