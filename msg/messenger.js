@@ -2,6 +2,7 @@
 
 const 
 express = require('express'),
+request = require('request'),
 GraphAPI = require('./services/graph-api'),
 config = require('./services/config'),
 User = require('./services/user'),
