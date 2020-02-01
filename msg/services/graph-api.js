@@ -63,12 +63,11 @@ module.exports = class GraphAPI {
     
           // Send the HTTP request to the Graph API
           request({
-            uri: `${config.mPlatfom}/${senderPsid}`,
+            uri:`${config.mPlatfom}/${senderPsid}`,
             qs: {
-              access_token: config.pageAccesToken,
-              fields: "first_name, last_name, gender, locale, timezone"
-            },
-            method: "GET"
+              access_token: config.pageAccessToken,
+              fields: 'first_name, last_name, gender, locale, timezone'
+            }
           })
             .on("response", function(response) {
               // console.log(response.statusCode);
