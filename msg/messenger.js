@@ -57,8 +57,7 @@ app.post('/webhook', (req,res) => {
             // Si el usuario no esta en users, crea uno nuevo
             if(!(senderPsid in users)) {
                 let user = new User(senderPsid);
-                console.log(senderPsid);
-                console.log(config.pageAccessToken);
+                console.log('Psid:', senderPsid);
 
                 GraphAPI.getUserProfile(senderPsid)
                     .then(userProfile => {
@@ -120,7 +119,7 @@ app.post('/webhook', (req,res) => {
             "recipient":  {
                 "id": senderPsid
             },
-            "message": response + users
+            "message": response
         }
 
         // Send the HTTP request to the Messenger Platform
