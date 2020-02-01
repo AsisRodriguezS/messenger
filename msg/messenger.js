@@ -104,7 +104,9 @@ app.post('/webhook', (req,res) => {
             
             // Create the payload for a basic text message
             response = {
-                "text": `Mensaje "${receivedMessage.text}" recibido`
+                "text": `Mensaje "${receivedMessage.text}" 
+                recibido de: ${users[senderPsid].firstName} ${users[senderPsid].lastName} 
+                con locale: ${users[senderPsid].locale}`
             }
         }
 
@@ -136,5 +138,7 @@ app.post('/webhook', (req,res) => {
             }
         });
     }
+
+
     
     module.exports = app;
