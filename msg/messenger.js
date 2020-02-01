@@ -36,7 +36,7 @@ app.get('/webhook', (req, res) => {
 });
 
 // Creates the endpoint for your webhook
-app.post('/webhook', (req,res) => {
+app.post('/webhook', (req, res) => {
     let body = req.body;
     
     // Checks if this is an event from a page subscription
@@ -80,11 +80,13 @@ app.post('/webhook', (req,res) => {
 
             // Check if the event is a message or postback and
             // pass the event to the appropriate handler function
+            // *Hay que meter los handlers adentro del finally para que la promesa
+            // *este resuelta cuando los llamemos
             if (webhookEvent.message) {
                 handleMessage(senderPsid, webhookEvent.message);        
             } else if (webhookEvent.postback) {
                 handlePostback(senderPsid, webhookEvent.postback);
-  }
+            }
             
         });
                 
@@ -94,6 +96,40 @@ app.post('/webhook', (req,res) => {
     }
     });
     
+
+    //Set up your App's Messenger Profile
+    app.get('/profile', (req, res) => {
+        let token = req.query["verify_token"];
+        let mode = req.query['mode'];
+
+        if (!config.webhookUrl.startsWith('https://')) {
+            res.status(200).send('Error - se necesita una API_URL segura en el archivo .env');
+        }
+        let Profile = require('./services/mProfile');
+        Profile = new Profile();
+
+        // Checks if a token and mode is in the query string of the request
+        if (mode && token) {
+            if (token === config.verifyToken) {
+                if (mode === 'profile' || mode === 'all') {
+                    Profile.setThread();
+                    res.Write(`<p>Configurando el perfil de messenger de la página ${config.pageId}</p>`);
+                }
+                if (mode === 'domains' || mode === 'all') {
+                    Profile.setWhitelistedDomains();
+                    res.write(`<p>Dominios permitidos: ${config.setWhitelistedDomains}</p>`);
+                }
+                res.status(200).end();
+            } else {
+                // Responds with '403 Forbidden' if verify tokens do not match
+                res.sendStatus(403);
+            }
+        } else {
+            // Returns a '404 Not Found' if mode or token are missing
+            res.sendStatus(404);
+        }
+
+    });
     
     // Handles messages events
     function handleMessage(senderPsid, receivedMessage) {

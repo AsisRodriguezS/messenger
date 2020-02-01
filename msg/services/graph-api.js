@@ -85,7 +85,7 @@ module.exports = class GraphAPI {
             })
             .on("end", () => {
               body = Buffer.concat(body).toString();
-              console.log(JSON.parse(body));
+              // console.log(JSON.parse(body));
     
               resolve(JSON.parse(body));
             });
