@@ -26,4 +26,8 @@ module.exports = {
     get webhookUrl() {
         return this.appUrl + "/webhook";
     },
+    
+    get whitelistedDomains() {
+        return [this.appUrl];
+    }
 }
