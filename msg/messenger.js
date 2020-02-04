@@ -113,7 +113,7 @@ app.post('/webhook', (req, res) => {
             if (token === config.verifyToken) {
                 if (mode === 'profile' || mode === 'all') {
                     Profile.setThread();
-                    res.Write(`<p>Configurando el perfil de messenger de la página ${config.pageId}</p>`);
+                    res.write(`<p>Configurando el perfil de messenger de la página ${config.pageId}</p>`);
                 }
                 if (mode === 'domains' || mode === 'all') {
                     Profile.setWhitelistedDomains();
