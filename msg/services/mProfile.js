@@ -25,7 +25,7 @@ const
         getGetStarted() {
             return {
                 get_started: {
-                    payload: GET_STARTED
+                    payload: 'GET_STARTED'
                 }
             };
         }
