@@ -89,7 +89,8 @@ module.exports = class Receive {
     handleQuickReply() {
         // Get the payload of the Quick Reply
         let payload = this.webhookEvent.message.quick_reply.payload;
-        return this.handlePayload(payload);
+        let mPlugin = this.webhookEvent.message.tags.source === 'customer_chat_plugin' ? true : false;
+        return this.handlePayload(payload, mPlugin);
     }
 
     // Handles postback events
@@ -113,16 +114,18 @@ module.exports = class Receive {
         return this.handlePayload(payload);
     }
 
-    handlePayload(payload) {
+    handlePayload(payload, mPlugin = false) {
+
+        mPlugin = payload.includes('CHAT-PLUGIN') || mPlugin === true ? true : false;
+        
         let response;
-        console.log(payload);
         if (payload === 'GET_STARTED') {
             response = Response.genNuxMessage(this.user);
         } else if (payload === 'EMPRENDEDOR' || payload === 'EMPRESARIO') {
             response = Response.genAskEmail();
         } else if (payload.includes('@') || payload === 'MAS_TARDE') {
             response = Response.genAskPhone(payload);
-        } else if (payload.includes('+') || Number(payload)) {
+        } else if (payload.includes('+') || Number(payload) || payload === 'MAS_TARDE2') {
             response = Response.genText(i18n.__('despedida.pronto'));
         } else {
         response = {
