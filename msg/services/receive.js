@@ -129,8 +129,8 @@ module.exports = class Receive {
         let attachment = this.webhookEvent.message.attachments[0];
         console.log('Received attachment:', `${attachment} para ${this.user.psid}`);
 
-        response = Response.genText(i18n.__(fallback.attachment));
-        
+        response = Response.genText(i18n.__('fallback.attachment'));
+
         return response;
     }
 
