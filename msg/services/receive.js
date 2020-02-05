@@ -111,7 +111,7 @@ module.exports = class Receive {
             response = Response.genNuxMessage(this.user);
         } else if (payload === 'EMPRENDEDOR' || payload === 'EMPRESARIO') {
             response = Response.genAskEmail();
-        } else if (payload.includes('@') || 'MAS_TARDE') {
+        } else if (payload.includes('@') || payload === 'MAS_TARDE') {
             response = Response.genAskPhone(payload);
         } else {
         response = {
