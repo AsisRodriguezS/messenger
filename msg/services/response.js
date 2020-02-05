@@ -33,7 +33,7 @@ module.exports = class Response {
             }
         }
 
-        console.log(typeof response[0], typeof response[1]);
+        console.log(...response[0], ...typeof response[1]);
         return response;
     }
 
