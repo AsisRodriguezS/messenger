@@ -3,6 +3,7 @@
 const 
 express = require('express'),
 request = require('request'),
+Receive = require('./services/receive'),
 GraphAPI = require('./services/graph-api'),
 config = require('./services/config'),
 User = require('./services/user'),
