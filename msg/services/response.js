@@ -60,6 +60,8 @@ module.exports = class Response {
 
     static genAskPhone() {
         let tel = this.genText('Si Funciona');
+
+        return tel;
     }
 
     static genNuxMessage(user) {
