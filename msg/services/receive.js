@@ -113,6 +113,8 @@ module.exports = class Receive {
             response = Response.genAskEmail();
         } else if (payload.includes('@') || payload === 'MAS_TARDE') {
             response = Response.genAskPhone(payload);
+        } else if (payload.includes('+') || Number(payload)) {
+            response = Response.genText('Holi');
         } else {
         response = {
             text: `¡Este es un mensaje por defecto para el payload: ${payload}!`

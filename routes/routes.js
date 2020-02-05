@@ -7,7 +7,7 @@ const
 
     // router.use(json({verify: verifyRequestSignature}));
 
-    router.route('/').get((req, res) => res.send('GET request to homepage'));
+    router.route('/').get((req, res) => res.render('../views/index'));
 
     router.use(require('../msg/messenger'));
 
