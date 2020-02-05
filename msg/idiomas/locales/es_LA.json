@@ -20,6 +20,7 @@
         "prompt": "Gracias por visitar nuestra página."
     },
     "fallback": {
-        "any": "Lo siento, pero no reconozco el mensaje: \"{{message}}\"."
+        "any": "Lo siento, pero no reconozco el mensaje: \"{{message}}\".",
+        "attachment": "Gracias por enviar el archivo adjunto, alguien de nuestro equipo lo revisará."
     }
 }
