@@ -31,7 +31,8 @@ module.exports = class Response {
             i18n.__('get_started.welcome', {
                 user_first_name: user.firstName
             })
-        );
+            );
+        console.log(`Welcome: ${welcome}`);
 
         let guide = this.genText(i18n.__('get_started.guidance'), [
             {
