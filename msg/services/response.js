@@ -33,7 +33,6 @@ module.exports = class Response {
             }
         }
 
-        console.log(...response);
         return response;
     }
 
