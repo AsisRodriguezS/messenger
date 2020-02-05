@@ -87,7 +87,7 @@ module.exports = class Receive {
     handleQuickReply() {
         // Get the payload of the Quick Reply
         let payload = this.webhookEvent.message.quick_reply.payload;
-
+        console.log(payload);
         return this.handlePayload(payload);
     }
 
@@ -110,7 +110,7 @@ module.exports = class Receive {
             response = Response.genNuxMessage(this.user);
         } else {
         response = {
-            text: `¡Este es un mensaje por defecto para el payloda: ${payload}!`
+            text: `¡Este es un mensaje por defecto para el payload: ${payload}!`
         };
     }
 

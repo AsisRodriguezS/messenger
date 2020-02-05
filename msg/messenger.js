@@ -122,51 +122,5 @@ app.post('/webhook', (req, res) => {
         }
 
     });
-    
-    // // Handles messages events
-    // function handleMessage(senderPsid, receivedMessage) {
-    //     let response;
-
-    //     // Check if the message contains text
-    //     if (receivedMessage.text) {
-            
-    //         // Create the payload for a basic text message
-    //         response = {
-    //             "text": `Mensaje "${receivedMessage.text}" 
-    //             recibido de: ${users[senderPsid].firstName} ${users[senderPsid].lastName} 
-    //             con locale: ${users[senderPsid].locale}`
-    //         }
-    //     }
-
-    //     // Sends the response message
-    //     callSendAPI(senderPsid, response);
-    // }
-
-    // // Sends response messages via the Send API
-    // function callSendAPI(senderPsid, response) {
-    //     // Construct the message body
-    //     let requestBody = {
-    //         "recipient":  {
-    //             "id": senderPsid
-    //         },
-    //         "message": response
-    //     }
-
-    //     // Send the HTTP request to the Messenger Platform
-    //     request({
-    //         "uri": "https://graph.facebook.com/v5.0/me/messages",
-    //         "qs": { "access_token": config.pageAccessToken },
-    //         "method": "POST",
-    //         "json": requestBody
-    //     }, (err, res, body) => {
-    //         if (!err) {
-    //             console.log('Mensaje enviado');
-    //         } else {
-    //             console.error('No se pudo enviar el mensaje:' + err);
-    //         }
-    //     });
-    // }
-
-
-    
+        
     module.exports = app;
