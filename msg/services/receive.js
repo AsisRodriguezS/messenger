@@ -25,6 +25,7 @@ module.exports = class Receive {
                 } else if (message.attachments) {
                     responses = this.handleAttachmentMessage();
                 } else if (message.text) {
+                    console.log('Handle Text Message');
                     this.handleTextMessage();
                 }
             } else if (event.postback) {
@@ -58,7 +59,7 @@ module.exports = class Receive {
         let message = this.webhookEvent.message.text.trim().toLowerCase();
 
         let response;
-        
+
         if (message.includes('empezar de nuevo') || message.includes('otra vez')) {
             response = Response.genNuxMessage(this.user);
         } else {
