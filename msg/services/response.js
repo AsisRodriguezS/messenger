@@ -20,12 +20,10 @@ module.exports = class Response {
         } else if (tipo === 'email') {
             for (let quickReply of quickReplies) {
                 if (quickReply['content_type'] === 'user_email') {
-                    console.log('pusheando1');
                     response['quick_replies'].push({
                     content_type: quickReply['content_type'],
                     });                    
                 } else {
-                    console.log('pusheando2');
                     response['quick_replies'].push({
                     content_type: quickReply['text'],
                     title: quickReply['title'],
@@ -35,7 +33,7 @@ module.exports = class Response {
             }
         }
 
-        console.log(response[0], response[1]);
+        console.log(typeof response[0], typeof response[1]);
         return response;
     }
 
