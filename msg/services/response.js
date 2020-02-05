@@ -18,10 +18,16 @@ module.exports = class Response {
             }
         } else if (tipo === 'email') {
             for (let quickReply of quickReplies) {
-            response['quick_replies'].push({
-                content_type: 'user_email',
-                title: quickReply['title'],
-            });
+                if (quickReply['content_type'] === 'user_email') {
+                    response['quick_replies'].push({
+                    content_type: 'user_email',
+                    });                    
+                } else {
+                    response['quick_replies'].push({
+                    content_type: 'text',
+                    title: quickReply['title']
+                    });  
+                }
             }
         }
 
@@ -39,9 +45,10 @@ module.exports = class Response {
     static genAskEmail () {
         let email = this.genQuickReply(i18n.__('datos.email'), [
             {
-                title: 'Email'
+                content_type: 'user_email'
             },
             {
+                content_type: 'text',
                 title: i18n.__('datos.neg')
             }
         ], 'email');
