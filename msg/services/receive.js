@@ -122,6 +122,21 @@ module.exports = class Receive {
     return response;
     }
 
+    handleAttachmentMessage() {
+        let response;
+
+        // Get the attachment
+        let attachment = this.webhookEvent.message.attachments[0];
+        console.log('Received attachment:', `${attachment} para ${this.user.psid}`);
+
+        if (this.webhookEvent.sticker_id) {
+            response = {
+                body = "",
+                sticker: '369239263222822'
+            }
+        }
+    }
+
     sendMessage(response, delay = 0) {
         // Construct the message body
 
