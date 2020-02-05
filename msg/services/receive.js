@@ -60,7 +60,7 @@ module.exports = class Receive {
         let response;
 
         if (message.includes('empezar de nuevo') || message.includes('otra vez')) {
-            console.log(`User: ${this.user}`);
+            console.log(`User: ${this.user.firstName}`);
             response = Response.genNuxMessage(this.user);
         } else {
             response = [
