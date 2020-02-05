@@ -21,7 +21,7 @@ module.exports = class Response {
             for (let quickReply of quickReplies) {
                 if (quickReply['content_type'] === 'user_email') {
                     response['quick_replies'].push({
-                    content_type: quickReply['content_type'],
+                    content_type: quickReply['content_type']
                     });                    
                 } else {
                     response['quick_replies'].push({
