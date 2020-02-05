@@ -25,8 +25,7 @@ module.exports = class Receive {
                 } else if (message.attachments) {
                     responses = this.handleAttachmentMessage();
                 } else if (message.text) {
-                    console.log('Handle Text Message');
-                    this.handleTextMessage();
+                    responses = this.handleTextMessage();
                 }
             } else if (event.postback) {
                 responses = this.handlePostback();
@@ -54,7 +53,7 @@ module.exports = class Receive {
 
     // Handles messages events with text
     handleTextMessage() {
-        console.log(`Texto recibido: ${this.webhookEvent.message.text} de ${this.user.psid}`);
+        console.log(`Texto recibido: "${this.webhookEvent.message.text}" de ${this.user.psid}`);
 
         let message = this.webhookEvent.message.text.trim().toLowerCase();
 
