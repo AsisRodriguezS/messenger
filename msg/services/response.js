@@ -19,6 +19,7 @@ module.exports = class Response {
             }
         } else if (tipo === 'email') {
             for (let quickReply of quickReplies) {
+                let count = 0;
                 if (quickReply['content_type'] === 'user_email') {
                     response['quick_replies'].push({
                     content_type: quickReply['content_type']
@@ -30,6 +31,8 @@ module.exports = class Response {
                     payload: quickReply['payload']
                     });  
                 }
+                count++;
+                console.log('Contador:', count);
             }
         }
 
