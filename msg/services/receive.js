@@ -28,8 +28,10 @@ module.exports = class Receive {
                     responses = this.handleTextMessage();
                 }
             } else if (event.postback) {
+                console.log('Oh no');
                 responses = this.handlePostback();
             } else if (event.referral) {
+                console.log('Oh si');
                 responses = this.handleReferral();
             }
         } catch(error) {
@@ -102,6 +104,13 @@ module.exports = class Receive {
             payload = postback.payload;
         }
         return this.handlePayload(payload.toUpperCase());
+    }
+
+    handleReferral() {
+        // Get the payload of the postback
+        let payload = this.webhookEvent.referral.ref.toUpperCase();
+
+        return this.handlePayload(payload);
     }
 
     handlePayload(payload) {
