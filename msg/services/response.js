@@ -25,8 +25,8 @@ module.exports = class Response {
                     content_type: quickReply['content_type'],
                     });                    
                 } else {
-                    response['quick_replies'].push({
                     console.log('pusheando2');
+                    response['quick_replies'].push({
                     content_type: quickReply['text'],
                     title: quickReply['title'],
                     payload: quickReply['payload']
