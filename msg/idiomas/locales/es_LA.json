@@ -1,14 +1,20 @@
 {
     "profile": {
-        "greeting": "¡Bienvenido a Yoinn.mx {{user_first_name}}!. Da click en Iniciar para conocer nuestros servicios"
+        "greeting": "¡Bienvenido a Yoinn.mx {{user_first_name}}!. Da click en Iniciar para conocer nuestros servicios."
     },
     "menu": {
         "emprendedor": "Emprendedor",
         "empresario": "Empresario"
     },
     "get_started": {
-        "welcome": "¡Hola {{user_first_name}}!. Te damos la bienvenida a Yoinn.mx, la empresa número uno en México en Innovación Digital",
+        "welcome": "¡Hola {{user_first_name}}!. Te damos la bienvenida a Yoinn.mx, la empresa número uno en México en Innovación Digital.",
         "guidance": "Para que podamos ayudarte mejor, permitenos saber cuál de las dos siguientes categorias aplica a ti:"
+    },
+    "datos": {
+        "email": "¡Excelente!. Da click en \"Email\" para proporcionarnos tu email y poder ponernos en contacto contigo.",
+        "tel1": "¡Genial!. También sería de ayuda si pudieras proporcionarnos tu teléfono.",
+        "tel2": "O si lo prefieres, puedes proporcionarnos tu teléfono.",
+        "neg": "Mas tarde"
     },
     "chat_plugin": {
         "prompt": "Gracias por visitar nuestra página."

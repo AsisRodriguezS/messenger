@@ -3,18 +3,26 @@
 const i18n = require('../idiomas/i18n.config');
 
 module.exports = class Response {
-    static genQuickReply(text, quickReplies) {
+    static genQuickReply(text, quickReplies, tipo) {
         let response = {
             text: text,
             quick_replies: []
         };
-
-        for (let quickReply of quickReplies) {
+        if (tipo === 'texto') {
+            for (let quickReply of quickReplies) {
+                response['quick_replies'].push({
+                    content_type: 'text',
+                    title: quickReply['title'],
+                    payload: quickReply['payload']
+                });
+            }
+        } else if (tipo === 'email') {
+            for (let quickReply of quickReplies) {
             response['quick_replies'].push({
-                content_type: 'text',
+                content_type: 'user_email',
                 title: quickReply['title'],
-                payload: quickReply['payload']
             });
+            }
         }
 
         return response;
@@ -28,13 +36,25 @@ module.exports = class Response {
         return response;
     }
 
+    static genAskEmail () {
+        let email = this.genQuickReply(i18n.__('datos.email'), [
+            {
+                title: 'Email'
+            },
+            {
+                title: i18n.__('datos.neg')
+            }
+        ], 'email'),
+
+        return email;
+    }
+
     static genNuxMessage(user) {
         let welcome = this.genText(
             i18n.__('get_started.welcome', {
                 user_first_name: user.firstName
             })
             );
-        console.log(`Welcome: ${welcome}`);
 
         let guide = this.genQuickReply(i18n.__('get_started.guidance'), [
             {
@@ -45,8 +65,8 @@ module.exports = class Response {
                 title: i18n.__('menu.empresario'),
                 payload: 'EMPRESARIO'
             }
-        ]);
+        ], 'texto');
 
-            return [welcome, guide]
+            return [welcome, guide];
     }
 }
