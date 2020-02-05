@@ -19,23 +19,20 @@ module.exports = class Response {
             }
         } else if (tipo === 'email') {
             for (let quickReply of quickReplies) {
-                let count = 0;
                 if (quickReply['content_type'] === 'user_email') {
-                    response['quick_replies'].push({
-                    content_type: quickReply['content_type']
-                    });                    
+                    console.log('1');
+                    // response['quick_replies'].push({
+                    
+                    // });                    
                 } else {
-                    response['quick_replies'].push({
-                    content_type: quickReply['text'],
-                    title: quickReply['title'],
-                    payload: quickReply['payload']
-                    });  
+                    console.log('2');
+                    // response['quick_replies'].push({
+                    
+                    // });  
                 }
-                count++;
-                console.log('Contador:', count);
             }
         }
-
+        console.log();
         return response;
     }
 
