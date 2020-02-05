@@ -131,10 +131,11 @@ module.exports = class Receive {
 
         if (this.webhookEvent.sticker_id) {
             response = {
-                body = "",
+                body: "",
                 sticker: '369239263222822'
             }
         }
+        return response;
     }
 
     sendMessage(response, delay = 0) {
