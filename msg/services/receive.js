@@ -106,7 +106,7 @@ module.exports = class Receive {
 
     handlePayload(payload) {
         let response;
-        
+        console.log(payload);
         if (payload === 'GET_STARTED') {
             response = Response.genNuxMessage(this.user);
         } else if (payload === 'EMPRENDEDOR' || payload === 'EMPRESARIO') {
@@ -114,7 +114,7 @@ module.exports = class Receive {
         } else if (payload.includes('@') || payload === 'MAS_TARDE') {
             response = Response.genAskPhone(payload);
         } else if (payload.includes('+') || Number(payload)) {
-            response = Response.genText('Holi');
+            response = Response.genText(i18n.__('despedida.pronto'));
         } else {
         response = {
             text: `¡Este es un mensaje por defecto para el payload: ${payload}!`

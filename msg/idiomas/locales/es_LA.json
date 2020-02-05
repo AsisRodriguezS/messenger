@@ -16,6 +16,10 @@
         "tel2": "O si lo prefieres, puedes proporcionarnos tu teléfono.",
         "neg": "Mas tarde"
     },
+    "despedida": {
+        "pronto": "Muy bien. Nuestro equipo se pondrá en contacto contigo muy pronto.",
+        "pagina": "Si lo deseas, puedes conocer más sobre Yoinn.mx visitando nuestra página:"
+    },
     "chat_plugin": {
         "prompt": "Gracias por visitar nuestra página."
     },
