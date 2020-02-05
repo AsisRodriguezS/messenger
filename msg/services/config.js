@@ -3,7 +3,7 @@
 module.exports = {
     // Messenger Platform API
     mPlatformDomain: "https://graph.facebook.com",
-    mPlatformVersion: "v5.0",
+    mPlatformVersion: "v6.0",
 
     // Page and Application information
     pageId: process.env.PAGE_ID,

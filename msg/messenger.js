@@ -71,25 +71,16 @@ app.post('/webhook', (req, res) => {
                         users[senderPsid] = user;
                         i18n.setLocale(user.locale);
                         console.log('Nuevo Perfil PSID:', senderPsid, 'con locale:', i18n.getLocale());
+                        let receivedMessage = new Receive(users[senderPsid], webhookEvent);
+                        return receivedMessage.handleMessage();
                     });
             } else {
                 i18n.setLocale(users[senderPsid]. locale);
                 console.log('El perfil ya existe, PSID:', senderPsid, 'con locale:', i18n.getLocale());
-            }
-
-
-            // Check if the event is a message or postback and
-            // pass the event to the appropriate handler function
-            // *Hay que meter los handlers adentro del finally para que la promesa
-            // *este resuelta cuando los llamemos
-            if (webhookEvent.message) {
-                handleMessage(senderPsid, webhookEvent.message);        
-            } else if (webhookEvent.postback) {
-                handlePostback(senderPsid, webhookEvent.postback);
-            }
-            
-        });
-                
+                let receivedMessage = new Receive(users[senderPsid], webhookEvent);
+                return receivedMessage.handleMessage();
+            }            
+        });                
     } else {
         // Returns a '404 Not Found' if event is not from a page subscription
         res.sendStatus(404);
@@ -131,49 +122,49 @@ app.post('/webhook', (req, res) => {
 
     });
     
-    // Handles messages events
-    function handleMessage(senderPsid, receivedMessage) {
-        let response;
+    // // Handles messages events
+    // function handleMessage(senderPsid, receivedMessage) {
+    //     let response;
 
-        // Check if the message contains text
-        if (receivedMessage.text) {
+    //     // Check if the message contains text
+    //     if (receivedMessage.text) {
             
-            // Create the payload for a basic text message
-            response = {
-                "text": `Mensaje "${receivedMessage.text}" 
-                recibido de: ${users[senderPsid].firstName} ${users[senderPsid].lastName} 
-                con locale: ${users[senderPsid].locale}`
-            }
-        }
+    //         // Create the payload for a basic text message
+    //         response = {
+    //             "text": `Mensaje "${receivedMessage.text}" 
+    //             recibido de: ${users[senderPsid].firstName} ${users[senderPsid].lastName} 
+    //             con locale: ${users[senderPsid].locale}`
+    //         }
+    //     }
 
-        // Sends the response message
-        callSendAPI(senderPsid, response);
-    }
+    //     // Sends the response message
+    //     callSendAPI(senderPsid, response);
+    // }
 
-    // Sends response messages via the Send API
-    function callSendAPI(senderPsid, response) {
-        // Construct the message body
-        let requestBody = {
-            "recipient":  {
-                "id": senderPsid
-            },
-            "message": response
-        }
+    // // Sends response messages via the Send API
+    // function callSendAPI(senderPsid, response) {
+    //     // Construct the message body
+    //     let requestBody = {
+    //         "recipient":  {
+    //             "id": senderPsid
+    //         },
+    //         "message": response
+    //     }
 
-        // Send the HTTP request to the Messenger Platform
-        request({
-            "uri": "https://graph.facebook.com/v5.0/me/messages",
-            "qs": { "access_token": config.pageAccessToken },
-            "method": "POST",
-            "json": requestBody
-        }, (err, res, body) => {
-            if (!err) {
-                console.log('Mensaje enviado');
-            } else {
-                console.error('No se pudo enviar el mensaje:' + err);
-            }
-        });
-    }
+    //     // Send the HTTP request to the Messenger Platform
+    //     request({
+    //         "uri": "https://graph.facebook.com/v5.0/me/messages",
+    //         "qs": { "access_token": config.pageAccessToken },
+    //         "method": "POST",
+    //         "json": requestBody
+    //     }, (err, res, body) => {
+    //         if (!err) {
+    //             console.log('Mensaje enviado');
+    //         } else {
+    //             console.error('No se pudo enviar el mensaje:' + err);
+    //         }
+    //     });
+    // }
 
 
     
