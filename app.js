@@ -18,6 +18,7 @@ app.use(express.urlencoded({extended: true}));
 // Parse application/json
 app.use(express.json());
 
+app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exhbs());
 app.set('view engine', 'handlebars');
 
