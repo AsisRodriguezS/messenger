@@ -44,7 +44,7 @@ module.exports = class Response {
             {
                 title: i18n.__('datos.neg')
             }
-        ], 'email'),
+        ], 'email');
 
         return email;
     }
