@@ -36,7 +36,7 @@ module.exports = class Response {
             );
         console.log(`Welcome: ${welcome}`);
 
-        let guide = this.genText(i18n.__('get_started.guidance'), [
+        let guide = this.genQuickReply(i18n.__('get_started.guidance'), [
             {
                 title: i18n.__('menu.emprendedor'),
                 payload: 'EMPRENDEDOR'

@@ -67,7 +67,7 @@ module.exports = class Receive {
                     message: this.webhookEvent.message.text
                 })
                 ),
-                Response.genText(i18n.__('get_started.guidance'), [
+                Response.genQuickReply(i18n.__('get_started.guidance'), [
                     {
                         title: i18n.__('menu.emprendedor'),
                         payload: 'EMPRENDEDOR'
