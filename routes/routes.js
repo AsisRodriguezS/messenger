@@ -7,7 +7,7 @@ const
 
     // router.use(json({verify: verifyRequestSignature}));
 
-    router.route('/').get((req, res) => res.render('index.handlebars'));
+    router.route('/').get((req, res) => res.render('pages/home.handlebars'));
 
     router.use(require('../msg/messenger'));
 
