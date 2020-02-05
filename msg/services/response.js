@@ -24,6 +24,8 @@ module.exports = class Response {
         let response = {
             text: text
         };
+
+        return response;
     }
 
     static genNuxMessage(user) {
