@@ -57,6 +57,8 @@ module.exports = class Receive {
 
         let message = this.webhookEvent.message.text.trim().toLowerCase();
 
+        let response;
+        
         if (message.includes('empezar de nuevo') || message.includes('otra vez')) {
             response = Response.genNuxMessage(this.user);
         } else {
