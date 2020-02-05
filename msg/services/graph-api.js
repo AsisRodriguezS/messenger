@@ -16,7 +16,7 @@ module.exports = class GraphAPI {
             json: requestBody
         }, err => {
             if (!err) {
-                console.log('Mensaje enviado');
+                console.log('Mensaje enviado', requestBody);
             } else {
                 console.error('No se pudo enviar el mensaje:' + err);
             }
