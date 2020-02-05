@@ -58,6 +58,10 @@ module.exports = class Response {
         return email;
     }
 
+    static genAskPhone() {
+        let tel = this.genText('Si Funciona');
+    }
+
     static genNuxMessage(user) {
         let welcome = this.genText(
             i18n.__('get_started.welcome', {

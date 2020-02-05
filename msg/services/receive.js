@@ -110,7 +110,9 @@ module.exports = class Receive {
         if (payload === 'GET_STARTED') {
             response = Response.genNuxMessage(this.user);
         } else if (payload === 'EMPRENDEDOR' || payload === 'EMPRESARIO') {
-            response = Response.genAskEmail(payload);
+            response = Response.genAskEmail();
+        } else if (payload.includes('@') || 'MAS_TARDE') {
+            response = Response.genAskPhone();
         } else {
         response = {
             text: `¡Este es un mensaje por defecto para el payload: ${payload}!`
