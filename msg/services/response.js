@@ -31,6 +31,20 @@ module.exports = class Response {
                     });  
                 }
             }
+        } else if (tipo === 'tel') {
+            for (let quickReply of quickReplies) {
+                if (quickReply['content_type'] === 'user_phone_number') {
+                    response['quick_replies'].push({
+                        content_type: 'user_phone_number'
+                    }); 
+                } else {
+                    response['quick_replies'].push({
+                        content_type: 'text',
+                        title: quickReply['title'],
+                        payload: quickReply['payload']
+                    }); 
+                }
+            }
         }
         return response;
     }
@@ -58,8 +72,18 @@ module.exports = class Response {
         return email;
     }
 
-    static genAskPhone() {
-        let tel = this.genText('Si Funciona');
+    static genAskPhone(payload) {
+        let tel = this.genQuickReply(payload.includes('@') ?
+        i18n.__('datos.tel1') : i18n.__('datos.tel2'), [
+            {
+                content_type: 'user_phone_number'
+            },
+            {
+                content_type: 'text',
+                title: i18n.__('datos.neg'),
+                payload: 'MAS_TARDE2'
+            }
+        ], 'tel');
 
         return tel;
     }

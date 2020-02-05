@@ -112,7 +112,7 @@ module.exports = class Receive {
         } else if (payload === 'EMPRENDEDOR' || payload === 'EMPRESARIO') {
             response = Response.genAskEmail();
         } else if (payload.includes('@') || 'MAS_TARDE') {
-            response = Response.genAskPhone();
+            response = Response.genAskPhone(payload);
         } else {
         response = {
             text: `¡Este es un mensaje por defecto para el payload: ${payload}!`
