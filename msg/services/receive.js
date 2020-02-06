@@ -130,7 +130,6 @@ module.exports = class Receive {
             console.log(this.referral);
             if(!this.referral) {
                 response.push(Response.genText(i18n.__('despedida.pagina')));
-                referral = false;
             }
         } else if (payload.includes('CHAT-PLUGIN')) {
             response = [
