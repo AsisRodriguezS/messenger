@@ -39,7 +39,7 @@ app.get('/webhook', (req, res) => {
 // Creates the endpoint for your webhook
 app.post('/webhook', (req, res) => {
     let body = req.body;
-    console.log(body.entry[0].messaging[0].postback.referral.ref);
+    console.log(body.entry[0].messaging[0].postback.referral);
     // Checks if this is an event from a page subscription
     if (body.object === 'page') {
         // Returns a '200 OK' response to all requests
