@@ -131,7 +131,7 @@ module.exports = class Receive {
             console.log(this.referral);
             if(!this.referral) {
                 response.push(Response.genText(i18n.__('despedida.pagina')));
-                response.push(Response.wholeLoad());
+                response.push(Response.urlButton(i18n.__('despedida.texto'), i18n.__('despedida.boton'), config.appUrl));
                 // response.push(
                 //     Response.genButtonTemplate(
                 //         i18n.__('despedida.texto', Response.genWebURLButton(

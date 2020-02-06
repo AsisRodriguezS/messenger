@@ -88,31 +88,31 @@ module.exports = class Response {
         return tel;
     }
 
-    static genButtonTemplate(title, buttons) {
-        let response = {
-          attachment: {
-            type: "template",
-            payload: {
-              template_type: "button",
-              text: title,
-              buttons: buttons
-            }
-          }
-        };
+    // static genButtonTemplate(title, buttons) {
+    //     let response = {
+    //       attachment: {
+    //         type: "template",
+    //         payload: {
+    //           template_type: "button",
+    //           text: title,
+    //           buttons: buttons
+    //         }
+    //       }
+    //     };
     
-        return response;
-      }
+    //     return response;
+    //   }
 
-    static genWebURLButton(title, url) {
-        let response = {
-            type: 'web_url',
-            title: title,
-            url: url,
-            messenger_extensions: true
-        };
+    // static genWebURLButton(title, url) {
+    //     let response = {
+    //         type: 'web_url',
+    //         title: title,
+    //         url: url,
+    //         messenger_extensions: true
+    //     };
 
-        return response;
-    }
+    //     return response;
+    // }
 
     static genNuxMessage(user) {
         let welcome = this.genText(
@@ -135,18 +135,18 @@ module.exports = class Response {
             return [welcome, guide];
     }
 
-    static wholeLoad () {
+    static urlButton (text, title, url) {
         let response = {
-            attachment:{
-              type:"template",
-              payload:{
-                template_type:"button",
-                text:"Try the URL button!",
-                buttons:[
+            attachment: {
+              type: "template",
+              payload: {
+                template_type: "button",
+                text: text,
+                buttons: [
                   {
-                    type:"web_url",
-                    url:"https://yoinn-mx.herokuapp.com",
-                    title:"URL Button",
+                    type: "web_url",
+                    url,
+                    title,
                     webview_height_ratio: "full"
                   }
                 ]
