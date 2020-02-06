@@ -162,7 +162,7 @@ module.exports = class Receive {
             response = Response.genText(i18n.__('fallback.attachment'));
         } else {
             console.log('No funciona');
-            Response.genText('\u0001F604');
+            Response.genText('🙂');
         }
 
         return response;
