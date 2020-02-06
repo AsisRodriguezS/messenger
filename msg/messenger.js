@@ -73,9 +73,7 @@ app.post('/webhook', (req, res) => {
                         users[senderPsid] = user;
                         i18n.setLocale(user.locale);
                         console.log('Nuevo Perfil PSID:', senderPsid, 'con locale:', i18n.getLocale());
-                        if (!webhookEvent.postback.referral){
-                            referral = false;
-                        } else {
+                        if (webhookEvent.postback.referral){
                             referral = true;
                         }
                         let receivedMessage = new Receive(users[senderPsid], webhookEvent, referral);
