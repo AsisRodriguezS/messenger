@@ -125,11 +125,11 @@ module.exports = class Receive {
         } else if (payload.includes('@') || payload === 'MAS_TARDE') {
             response = Response.genAskPhone(payload);
         } else if (payload.includes('+') || Number(payload) || payload === 'MAS_TARDE2') {
-            response = Response.genText(i18n.__('despedida.pronto'));
-            console.log(this.referral);
-            if(this.referral) {
-                console.log('Entro al referral');
-                response = Response.genText(i18n.__('despedida.pagina'));
+            response = [];
+            response.push(Response.genText(i18n.__('despedida.pronto')));
+            if(!this.referral) {
+                response.push(Response.genText(i18n.__('despedida.pagina')));
+                referral = false;
             }
         } else if (payload.includes('CHAT-PLUGIN')) {
             response = [
