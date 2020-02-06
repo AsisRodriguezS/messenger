@@ -7,6 +7,7 @@ module.exports = class Receive {
     constructor(user, webhookEvent) {
         this.user = user;
         this.webhookEvent = webhookEvent;
+        this.plugin = plugin;
     }
 
     // Check if the Event is a message or postback and
@@ -95,9 +96,9 @@ module.exports = class Receive {
     // Handles postback events
     handlePostback() {
         let postback = this.webhookEvent.postback;
-        // Check for the special Get Starded with referral
+        // Postback con referral del m.me link (get started con referral o página de Yoinn.mx)
         let payload;
-        if (postback.referral && postback.referral.type == 'OPEN_THREAD') {
+        if (postback.referral && postback.referral.ref === 'CHAT-PLUGIN') {
             payload = postback.referral.ref;
         } else {
             // Get the payload of the postback
@@ -125,6 +126,23 @@ module.exports = class Receive {
             response = Response.genAskPhone(payload);
         } else if (payload.includes('+') || Number(payload) || payload === 'MAS_TARDE2') {
             response = Response.genText(i18n.__('despedida.pronto'));
+            if (this.plugin) {
+                Response.genText(i18n.__('despedida.pagina'))
+            }
+        } else if (payload.includes('CHAT-PLUGIN')) {
+            response = [
+                Response.genText(i18n.__('chat_plugin.prompt')),
+                Response.genQuickReply(i18n.__('get_started.guidance'), [
+                    {
+                        title: i18n.__('menu.emprendedor'),
+                        payload: 'EMPRENDEDOR'
+                    },
+                    {
+                        title: i18n.__('menu.empresario'),
+                        payload: 'EMPRESARIO'
+                    }
+                ])
+            ];
         } else {
         response = {
             text: `¡Este es un mensaje por defecto para el payload: ${payload}!`
