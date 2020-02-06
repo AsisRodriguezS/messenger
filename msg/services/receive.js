@@ -161,6 +161,7 @@ module.exports = class Receive {
             console.log('Se recibió archivo adjunto:', `${attachment} de ${this.user.psid}`);        
             response = Response.genText(i18n.__('fallback.attachment'));
         } else {
+            console.log('No funciona');
             Response.genText(':)');
         }
 
