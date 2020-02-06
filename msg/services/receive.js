@@ -141,7 +141,7 @@ module.exports = class Receive {
                         title: i18n.__('menu.empresario'),
                         payload: 'EMPRESARIO'
                     }
-                ])
+                ], 'texto')
             ];
         } else {
         response = {
