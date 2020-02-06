@@ -72,15 +72,15 @@ app.post('/webhook', (req, res) => {
                         users[senderPsid] = user;
                         i18n.setLocale(user.locale);
                         console.log('Nuevo Perfil PSID:', senderPsid, 'con locale:', i18n.getLocale());
-                        plugin = webhookEvent.postback.referral.ref === 'CHAT-PLUGIN' ? true : false;
-                        let receivedMessage = new Receive(users[senderPsid], webhookEvent, plugin);
+                        referral = webhookEvent.postback.referral.ref ? true : false;
+                        let receivedMessage = new Receive(users[senderPsid], webhookEvent, referral);
                         return receivedMessage.handleMessage();
                     });
             } else {
                 i18n.setLocale(users[senderPsid]. locale);
                 console.log('El perfil ya existe, PSID:', senderPsid, 'con locale:', i18n.getLocale());
-                plugin = webhookEvent.postback.referral.ref === 'CHAT-PLUGIN' ? true : false;
-                let receivedMessage = new Receive(users[senderPsid], webhookEvent, plugin);
+                referral = webhookEvent.postback.referral.ref ? true : false;
+                let receivedMessage = new Receive(users[senderPsid], webhookEvent, referral);
                 return receivedMessage.handleMessage();
             }            
         });                

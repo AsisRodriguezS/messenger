@@ -4,10 +4,10 @@ const
     i18n = require('../idiomas/i18n.config');
 
 module.exports = class Receive {
-    constructor(user, webhookEvent) {
+    constructor(user, webhookEvent, referral) {
         this.user = user;
         this.webhookEvent = webhookEvent;
-        this.plugin = plugin;
+        this.referral = referral;
     }
 
     // Check if the Event is a message or postback and
