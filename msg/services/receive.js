@@ -127,6 +127,7 @@ module.exports = class Receive {
         } else if (payload.includes('+') || Number(payload) || payload === 'MAS_TARDE2') {
             response = [];
             response.push(Response.genText(i18n.__('despedida.pronto')));
+            console.log(this.referral);
             if(!this.referral) {
                 response.push(Response.genText(i18n.__('despedida.pagina')));
                 referral = false;
