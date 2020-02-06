@@ -1,6 +1,7 @@
 const
     Response = require('./response'),
     GraphAPI = require('./graph-api'),
+    config = require('./config'),
     i18n = require('../idiomas/i18n.config');
 
 module.exports = class Receive {
@@ -130,6 +131,13 @@ module.exports = class Receive {
             console.log(this.referral);
             if(!this.referral) {
                 response.push(Response.genText(i18n.__('despedida.pagina')));
+                response.push(
+                    Response.genButtonTemplate(
+                        i18n.__('despedida.texto', Response.genWebURLButton(
+                            i18n.__('despedida.boton', config.appUrl)
+                        ))
+                    )
+                );
             }
         } else if (payload.includes('CHAT-PLUGIN')) {
             response = [
