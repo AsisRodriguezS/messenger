@@ -127,8 +127,9 @@ module.exports = class Receive {
         } else if (payload.includes('+') || Number(payload) || payload === 'MAS_TARDE2') {
             response = Response.genText(i18n.__('despedida.pronto'));
             console.log(this.referral);
-            if (this.referral) {
-                Response.genText(i18n.__('despedida.pagina'))
+            if(this.referral) {
+                console.log('Entro al referral');
+                response = Response.genText(i18n.__('despedida.pagina'));
             }
         } else if (payload.includes('CHAT-PLUGIN')) {
             response = [
