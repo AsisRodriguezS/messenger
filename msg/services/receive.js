@@ -126,6 +126,7 @@ module.exports = class Receive {
             response = Response.genAskPhone(payload);
         } else if (payload.includes('+') || Number(payload) || payload === 'MAS_TARDE2') {
             response = Response.genText(i18n.__('despedida.pronto'));
+            console.log(this.referral);
             if (this.referral) {
                 Response.genText(i18n.__('despedida.pagina'))
             }
