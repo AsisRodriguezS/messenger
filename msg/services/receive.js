@@ -5,10 +5,9 @@ const
     i18n = require('../idiomas/i18n.config');
 
 module.exports = class Receive {
-    constructor(user, webhookEvent, referral) {
+    constructor(user, webhookEvent) {
         this.user = user;
         this.webhookEvent = webhookEvent;
-        this.referral = referral;
     }
 
     // Check if the Event is a message or postback and
@@ -128,18 +127,9 @@ module.exports = class Receive {
         } else if (payload.includes('+') || Number(payload) || payload === 'MAS_TARDE2') {
             response = [];
             response.push(Response.genText(i18n.__('despedida.pronto')));
-            console.log(this.referral);
-            if(!this.referral) {
-                response.push(Response.genText(i18n.__('despedida.pagina')));
-                response.push(Response.urlButton(i18n.__('despedida.texto'), i18n.__('despedida.boton'), config.appUrl));
-                // response.push(
-                //     Response.genButtonTemplate(
-                //         i18n.__('despedida.texto', Response.genWebURLButton(
-                //             i18n.__('despedida.boton', config.appUrl)
-                //         ))
-                //     )
-                // );
-            }
+            response.push(Response.genText(i18n.__('despedida.pagina')));
+            response.push(Response.urlButton(i18n.__('despedida.texto'), i18n.__('despedida.boton'), config.appUrl));
+            
         } else if (payload.includes('CHAT-PLUGIN')) {
             response = [
                 Response.genText(i18n.__('chat_plugin.prompt')),
@@ -172,7 +162,7 @@ module.exports = class Receive {
             console.log('Se recibió archivo adjunto:', `${attachment} de ${this.user.psid}`);        
             response = Response.genText(i18n.__('fallback.attachment'));
         } else {
-            Response.genText('¡Saludos!');
+            response = Response.genText('¡Saludos!');
         }
 
         return response;

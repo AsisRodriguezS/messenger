@@ -14,7 +14,7 @@ app = express();
 // PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 let users = {};
-let referral = false;
+// let referral = false;
 
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
@@ -76,13 +76,13 @@ app.post('/webhook', (req, res) => {
                         if (webhookEvent.postback.referral){
                             referral = true;
                         }
-                        let receivedMessage = new Receive(users[senderPsid], webhookEvent, referral);
+                        let receivedMessage = new Receive(users[senderPsid], webhookEvent);
                         return receivedMessage.handleMessage();
                     });
             } else {
                 i18n.setLocale(users[senderPsid]. locale);
                 console.log('El perfil ya existe, PSID:', senderPsid, 'con locale:', i18n.getLocale());
-                let receivedMessage = new Receive(users[senderPsid], webhookEvent, referral);
+                let receivedMessage = new Receive(users[senderPsid], webhookEvent);
                 return receivedMessage.handleMessage();
             }            
         });                

@@ -88,32 +88,6 @@ module.exports = class Response {
         return tel;
     }
 
-    // static genButtonTemplate(title, buttons) {
-    //     let response = {
-    //       attachment: {
-    //         type: "template",
-    //         payload: {
-    //           template_type: "button",
-    //           text: title,
-    //           buttons: buttons
-    //         }
-    //       }
-    //     };
-    
-    //     return response;
-    //   }
-
-    // static genWebURLButton(title, url) {
-    //     let response = {
-    //         type: 'web_url',
-    //         title: title,
-    //         url: url,
-    //         messenger_extensions: true
-    //     };
-
-    //     return response;
-    // }
-
     static genNuxMessage(user) {
         let welcome = this.genText(
             i18n.__('get_started.welcome', {
