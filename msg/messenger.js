@@ -72,14 +72,14 @@ app.post('/webhook', (req, res) => {
                         users[senderPsid] = user;
                         i18n.setLocale(user.locale);
                         console.log('Nuevo Perfil PSID:', senderPsid, 'con locale:', i18n.getLocale());
-                        referral = webhookEvent.postback.referral.ref ? true : false;
+                        if (webhookEvent.hasOwnProperty('postback') && webhookEvent.postback.hasOwnProperty('referral'));
                         let receivedMessage = new Receive(users[senderPsid], webhookEvent, referral);
                         return receivedMessage.handleMessage();
                     });
             } else {
                 i18n.setLocale(users[senderPsid]. locale);
                 console.log('El perfil ya existe, PSID:', senderPsid, 'con locale:', i18n.getLocale());
-                referral = webhookEvent.postback.referral.ref ? true : false;
+                if (webhookEvent.hasOwnProperty('postback') && webhookEvent.postback.hasOwnProperty('referral'));
                 let receivedMessage = new Receive(users[senderPsid], webhookEvent, referral);
                 return receivedMessage.handleMessage();
             }            
