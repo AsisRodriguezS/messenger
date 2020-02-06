@@ -89,8 +89,7 @@ module.exports = class Receive {
     handleQuickReply() {
         // Get the payload of the Quick Reply
         let payload = this.webhookEvent.message.quick_reply.payload;
-        let mPlugin = this.webhookEvent.message.tags.source === 'customer_chat_plugin' ? true : false;
-        return this.handlePayload(payload, mPlugin);
+        return this.handlePayload(payload);
     }
 
     // Handles postback events
@@ -114,10 +113,9 @@ module.exports = class Receive {
         return this.handlePayload(payload);
     }
 
-    handlePayload(payload, mPlugin = false) {
+    handlePayload(payload) {
 
-        mPlugin = payload.includes('CHAT-PLUGIN') || mPlugin === true ? true : false;
-        
+ 
         let response;
         if (payload === 'GET_STARTED') {
             response = Response.genNuxMessage(this.user);
