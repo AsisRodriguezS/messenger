@@ -134,4 +134,25 @@ module.exports = class Response {
 
             return [welcome, guide];
     }
+
+    static wholeLoad () {
+        let response = {
+            attachment:{
+              type:"template",
+              payload:{
+                template_type:"button",
+                text:"Try the URL button!",
+                buttons:[
+                  {
+                    type:"web_url",
+                    url:"https://yoinn-mx.herokuapp.com",
+                    title:"URL Button",
+                    webview_height_ratio: "full"
+                  }
+                ]
+              }
+            }
+        }
+        return response;
+    }
 }
