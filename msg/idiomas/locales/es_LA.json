@@ -21,7 +21,7 @@
         "pagina": "Si lo deseas, puedes conocer más sobre Yoinn.mx visitando nuestra página:"
     },
     "chat_plugin": {
-        "prompt": "Gracias por visitar nuestra página. Asegurate de visitar nuestros casos de éxito"
+        "prompt": "Gracias por visitar nuestra página."
     },
     "fallback": {
         "any": "Lo siento, pero no reconozco el mensaje: \"{{message}}\".",
