@@ -14,6 +14,7 @@ app = express();
 // PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 let users = {};
+let tracking = false;
 
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
@@ -50,7 +51,7 @@ app.post('/webhook', (req, res) => {
             // Gets the message. entry.messaging is an array, but 
             // will only ever contain one message, so we get index 0            
             let webhookEvent = entry.messaging[0];
-            console.log(JSON.stringify(webhookEvent.message));
+            // console.log(JSON.stringify(webhookEvent.message));
 
             // Get the sender PSID
             let senderPsid = webhookEvent.sender.id;

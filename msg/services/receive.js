@@ -157,9 +157,12 @@ module.exports = class Receive {
 
         // Get the attachment
         let attachment = this.webhookEvent.message.attachments[0];
-        console.log('Received attachment:', `${attachment} para ${this.user.psid}`);
-
-        response = Response.genText(i18n.__('fallback.attachment'));
+        if (this.webhookEvent.message.sticker_id && this.webhookEvent.message.sticker_id === '369239263222822') {
+            console.log('Se recibió archivo adjunto:', `${attachment} de ${this.user.psid}`);        
+            response = Response.genText(i18n.__('fallback.attachment'));
+        } else {
+            Response.genText(':)');
+        }
 
         return response;
     }
