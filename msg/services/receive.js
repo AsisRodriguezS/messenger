@@ -128,13 +128,13 @@ module.exports = class Receive {
             response = Response.genAskPhone(payload);
         } else if (payload.includes('+') || Number(payload) || payload === 'MAS_TARDE2') {
             response = [];
-            response.push(Response.genText(i18n.__('despedida.pronto')));
+            response.push(Response.genText(i18n.__('despedida.pronto', { user_first_name: this.user.firtName})));
             response.push(Response.genText(i18n.__('despedida.pagina')));
             response.push(Response.urlButton(i18n.__('despedida.texto'), i18n.__('despedida.boton'), config.appUrl));
             
         } else if (payload.includes('CHAT-PLUGIN')) {
             response = [
-                Response.genText(i18n.__('chat_plugin.prompt')),
+                Response.genText(i18n.__('chat_plugin.prompt', { user_first_name: this.user.firtName})),
                 Response.genQuickReply(i18n.__('get_started.guidance'), [
                     {
                         title: i18n.__('menu.emprendedor'),
