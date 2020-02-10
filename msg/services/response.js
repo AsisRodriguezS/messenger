@@ -107,6 +107,27 @@ module.exports = class Response {
         return tel;
     }
 
+    static genGenericTemplate(image_url, title, subtitle, buttons) {
+        let response = {
+          attachment: {
+            type: "template",
+            payload: {
+              template_type: "generic",
+              elements: [
+                {
+                  title: title,
+                  subtitle: subtitle,
+                  image_url: image_url,
+                  buttons: buttons
+                }
+              ]
+            }
+          }
+        };
+    
+        return response;
+    }
+
     static genButtonTemplate(title, buttons) {
         let response = {
           attachment: {
@@ -117,6 +138,16 @@ module.exports = class Response {
               buttons: buttons
             }
           }
+        };
+    
+        return response;
+    }
+
+    static genPostbackButton(title, payload) {
+        let response = {
+          type: "postback",
+          title: title,
+          payload: payload
         };
     
         return response;
