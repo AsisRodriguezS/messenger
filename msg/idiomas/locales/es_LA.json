@@ -28,7 +28,7 @@
         "boton": "Yoinn.mx"
     },
     "chat_plugin": {
-        "prompt": "Gracias por visitar nuestra página {{user_firts_name}}"
+        "prompt": "Gracias por visitar nuestra página {{user_first_name}}."
     },
     "fallback": {
         "any": "Lo siento, pero no reconozco el mensaje: \"{{message}}\".",
