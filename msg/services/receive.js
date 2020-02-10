@@ -120,7 +120,9 @@ module.exports = class Receive {
         let response;
         if (payload === 'GET_STARTED') {
             response = Response.genNuxMessage(this.user);
-        } else if (payload === 'EMPRENDEDOR' || payload === 'EMPRESARIO') {
+        } else if (payload === 'EMPRENDEDOR' || payload === 'TRANSF' || payload === 'DISENO') {
+            response = Response.genAskEtapa();
+        } else if (payload === 'ET1' || payload === 'ET2' || payload === 'ET3'){ 
             response = Response.genAskEmail();
         } else if (payload.includes('@') || payload === 'MAS_TARDE') {
             response = Response.genAskPhone(payload);

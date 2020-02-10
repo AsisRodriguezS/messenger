@@ -57,6 +57,25 @@ module.exports = class Response {
         return response;
     }
 
+    static genAskEtapa () {
+        let etapa = this.genQuickReply(i18n.__('datos.etapa'), [
+            {
+                title: i18n.__('menu.et1'),
+                payload: 'ET1'
+            },
+            {
+                title: i18n.__('menu.et2'),
+                payload: 'ET2'
+            },
+            {
+                title: i18n.__('menu.et3'),
+                payload: 'ET3'
+            },
+        ], 'texto')
+
+        return etapa;
+    }
+
     static genAskEmail () {
         let email = this.genQuickReply(i18n.__('datos.email'), [
             {
@@ -88,6 +107,32 @@ module.exports = class Response {
         return tel;
     }
 
+    static genButtonTemplate(title, buttons) {
+        let response = {
+          attachment: {
+            type: "template",
+            payload: {
+              template_type: "button",
+              text: title,
+              buttons: buttons
+            }
+          }
+        };
+    
+        return response;
+    }
+
+    static genWebUrlButton(title, url) {
+        let response = {
+          type: "web_url",
+          title: title,
+          url: url,
+          messenger_extensions: true
+        };
+    
+        return response;
+    }
+
     static genNuxMessage(user) {
         let welcome = this.genText(
             i18n.__('get_started.welcome', {
@@ -101,8 +146,12 @@ module.exports = class Response {
                 payload: 'EMPRENDEDOR'
             },
             {
-                title: i18n.__('menu.empresario'),
-                payload: 'EMPRESARIO'
+                title: i18n.__('menu.transf'),
+                payload: 'TRANSF'
+            },
+            {
+                title: i18n.__('menu.diseno'),
+                payload: 'DISENO'
             }
         ], 'texto');
 
