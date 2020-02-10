@@ -141,8 +141,12 @@ module.exports = class Receive {
                         payload: 'EMPRENDEDOR'
                     },
                     {
-                        title: i18n.__('menu.empresario'),
-                        payload: 'EMPRESARIO'
+                        title: i18n.__('menu.transf'),
+                        payload: 'TRANSF'
+                    },
+                    {
+                        title: i18n.__('menu.diseno'),
+                        payload: 'DISENO'
                     }
                 ], 'texto')
             ];
