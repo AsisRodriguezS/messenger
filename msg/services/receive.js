@@ -2,6 +2,7 @@ const
     Response = require('./response'),
     GraphAPI = require('./graph-api'),
     config = require('./config'),
+    Datos = require('./datos'),
     i18n = require('../idiomas/i18n.config');
 
 module.exports = class Receive {
@@ -63,25 +64,27 @@ module.exports = class Receive {
         let response;
 
         if (message.includes('empezar de nuevo') || message.includes('otra vez')) {
-            response = Response.genNuxMessage(this.user);
-        } else {
-            response = [
-                Response.genText(i18n.__('fallback.any', {
-                    message: this.webhookEvent.message.text
-                })
-                ),
-                Response.genQuickReply(i18n.__('get_started.guidance'), [
-                    {
-                        title: i18n.__('menu.emprendedor'),
-                        payload: 'EMPRENDEDOR'
-                    },
-                    {
-                        title: i18n.__('menu.empresario'),
-                        payload: 'EMPRESARIO'
-                    }
-                ])                   
-            ];
-        }
+            response = [];
+            response = response.push(Response.genNuxMessage(this.user));
+            response = response.push(Datos.servicios(this.user));
+        } //else {
+        //     response = [
+        //         Response.genText(i18n.__('fallback.any', {
+        //             message: this.webhookEvent.message.text
+        //         })
+        //         ),
+        //         Response.genQuickReply(i18n.__('get_started.guidance'), [
+        //             {
+        //                 title: i18n.__('menu.emprendedor'),
+        //                 payload: 'EMPRENDEDOR'
+        //             },
+        //             {
+        //                 title: i18n.__('menu.empresario'),
+        //                 payload: 'EMPRESARIO'
+        //             }
+        //         ])                   
+        //     ];
+        // }
 
         return response;
     }
@@ -119,7 +122,10 @@ module.exports = class Receive {
  
         let response;
         if (payload === 'GET_STARTED') {
-            response = Response.genNuxMessage(this.user);
+            response = [];
+            response = response.push(Response.genNuxMessage(this.user));
+            response = response.push(Datos.servicios(this.user));
+
         } else if (payload === 'EMPRENDEDOR' || payload === 'TRANSF' || payload === 'DISENO') {
             response = Response.genAskEtapa();
         } else if (payload === 'ET1' || payload === 'ET2' || payload === 'ET3'){ 

@@ -171,20 +171,7 @@ module.exports = class Response {
             })
             );
 
-        let guide = this.genQuickReply(i18n.__('get_started.guidance'), [
-            {
-                title: i18n.__('menu.emprendedor'),
-                payload: 'EMPRENDEDOR'
-            },
-            {
-                title: i18n.__('menu.transf'),
-                payload: 'TRANSF'
-            },
-            {
-                title: i18n.__('menu.diseno'),
-                payload: 'DISENO'
-            }
-        ], 'texto');
+        let guide = this.genText(i18n.__('get_started.guidance'));
 
             return [welcome, guide];
     }

@@ -10,4 +10,28 @@ const
             this.user = user;
             this.webhookEvent = webhookEvent;
         }
+
+        static servicios () {
+            response = [
+                Response.genGenericTemplate(
+                    `${config.appUrl}/img/msn/tipodeservicio.png`,
+                    i18n.__('datos.titulo'),
+                    i18n.__('datos.subtitulo'),
+                    [
+                        Response.genPostbackButton(
+                            i18n.__('menu.emprendedor'),
+                            'EMPRENDEDOR'
+                        ),
+                        Response.genPostbackButton(
+                            i18n.__('menu.transf'),
+                            'TRANS'
+                        ),
+                        Response.genPostbackButton(
+                            i18n.__('menu.diseno'),
+                            'DISENO'
+                        )
+                    ]
+                )
+            ];
+        }
     }
