@@ -53,11 +53,11 @@ const
                     Response.genPostbackButton(
                         i18n.__('menu.et3'),
                         'ET3'
-                    ),
-                    Response.genPostbackButton(
-                        i18n.__('menu.et4'),
-                        'ET4'
                     )
+                    // Response.genPostbackButton(
+                    //     i18n.__('menu.et4'),
+                    //     'ET4'
+                    // )
                 ]
             );
             return response;
