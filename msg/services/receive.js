@@ -138,7 +138,7 @@ module.exports = class Receive {
         } else if (payload === 'DISENO') {
             response = [
                 Response.genText(i18n.__('datos.diseno')),
-                Response.genText(i18n.__('datos.desarollo')),
+                Response.genText(i18n.__('datos.desarrollo')),
                 Datos.diseno()
             ];
         } else if (payload === 'ET1' || payload === 'ET2' || payload === 'ET3'){ 

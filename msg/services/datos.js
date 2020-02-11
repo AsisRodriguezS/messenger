@@ -86,7 +86,7 @@ const
         static diseno() {
             let response = 
             Response.genGenericTemplate(
-                `${config.appUrl}/img/msn/desarollo_web.jpg`,
+                `${config.appUrl}/img/msn/desarrollo_web.jpg`,
                 i18n.__('datos.titulo'),
                 i18n.__('datos.subtituloD'),
                 [
