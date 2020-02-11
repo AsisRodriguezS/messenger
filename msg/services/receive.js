@@ -66,7 +66,7 @@ module.exports = class Receive {
         if (message.includes('empezar de nuevo') || message.includes('otra vez')) {
             response = [];
             response = response.push(Response.genNuxMessage(this.user));
-            response = response.push(Datos.servicios(this.user));
+            response = response.push(Datos.servicios());
         } //else {
         //     response = [
         //         Response.genText(i18n.__('fallback.any', {
@@ -124,7 +124,7 @@ module.exports = class Receive {
         if (payload === 'GET_STARTED') {
             response = [];
             response = response.push(Response.genNuxMessage(this.user));
-            response = response.push(Datos.servicios(this.user));
+            response = response.push(Datos.servicios());
 
         } else if (payload === 'EMPRENDEDOR' || payload === 'TRANSF' || payload === 'DISENO') {
             response = Response.genAskEtapa();
@@ -141,20 +141,8 @@ module.exports = class Receive {
         } else if (payload.includes('CHAT-PLUGIN')) {
             response = [
                 Response.genText(i18n.__('chat_plugin.prompt', { user_first_name: this.user.firstName})),
-                Response.genQuickReply(i18n.__('get_started.guidance'), [
-                    {
-                        title: i18n.__('menu.emprendedor'),
-                        payload: 'EMPRENDEDOR'
-                    },
-                    {
-                        title: i18n.__('menu.transf'),
-                        payload: 'TRANSF'
-                    },
-                    {
-                        title: i18n.__('menu.diseno'),
-                        payload: 'DISENO'
-                    }
-                ], 'texto')
+                Response.genText(i18n.__('get_started.guidance')),
+                Datos.servicios();
             ];
         } else {
         response = {
