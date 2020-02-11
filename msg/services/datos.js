@@ -82,4 +82,28 @@ const
             );
             return response;
         }
+
+        static diseno() {
+            let response = 
+            Response.genGenericTemplate(
+                `${config.appUrl}/img/msn/desarollo_web.jpg`,
+                i18n.__('datos.titulo'),
+                i18n.__('datos.subtituloD'),
+                [
+                    Response.genPostbackButton(
+                        i18n.__('menu.dn1'),
+                        'DN1'
+                    ),
+                    Response.genPostbackButton(
+                        i18n.__('menu.dn2'),
+                        'DN2'
+                    ),
+                    Response.genPostbackButton(
+                        i18n.__('menu.dn3'),
+                        'DN3'
+                    )
+                ]
+            );
+            return response;
+        }
     }

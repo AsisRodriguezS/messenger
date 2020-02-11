@@ -12,7 +12,11 @@
         "et4": "4 - Primeras ventas",
         "tr1": "No tengo sistema",
         "tr2": "Mi sistema es insuficiente",
-        "tr3": "Mi sistema es costoso"
+        "tr3": "Mi sistema es costoso",
+        "dn1": "Landing Page",
+        "dn2": "Blog/CMS",
+        "dn3": "Tienda en Linea",
+        "dn4": "Aplicación web"
     },
     "get_started": {
         "welcome": "¡Hola {{user_first_name}}!. Te damos la bienvenida a Yoinn.mx, la empresa número uno en México en Innovación Digital.",
@@ -20,9 +24,11 @@
     },
     "datos": {
         "emprendedor": "¡Genial!. En Yoinn nos encantaría ayudarte a materializar tu visión.",
-        "transf": "¡Excelente! En Yoinn nos apasiona ayudar a las empresas a alcanzar sus objetivos a través de la tecnología.",
+        "transf": "¡Excelente!. En Yoinn nos apasiona ayudar a las empresas a alcanzar sus objetivos a través de la tecnología.",
+        "diseno": "¡De acuerdo!. Nos encanta desarrollar nuevos proyectos con el mejor balance entre calidad y precio.",
         "etapa": "¿En qué etapa de desarrollo se encuentra tu proyecto actualmente?",
         "situacion": "¿Cuál es la situación de tu negocio en este momento?",
+        "desarrollo": "¿Qué tipo de desarrollo web tienes en mente?",
         "email": "¡Excelente!. Da click en \"Email\" para proporcionarnos tu email y poder ponernos en contacto contigo.",
         "tel1": "¡Genial!. También sería de ayuda si pudieras proporcionarnos tu teléfono.",
         "tel2": "O si lo prefieres, puedes proporcionarnos tu teléfono.",

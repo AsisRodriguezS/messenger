@@ -123,7 +123,6 @@ module.exports = class Receive {
         if (payload === 'GET_STARTED') {
             response = Response.genNuxMessage(this.user);
             response.push(Datos.servicios());
-            console.log(response.length);
         } else if (payload === 'EMPRENDEDOR') {
             response = [
                 Response.genText(i18n.__('datos.emprendedor')),
@@ -135,6 +134,12 @@ module.exports = class Receive {
                 Response.genText(i18n.__('datos.transf')),
                 Response.genText(i18n.__('datos.situacion')),
                 Datos.transf()
+            ];
+        } else if (payload === 'DISENO') {
+            response = [
+                Response.genText(i18n.__('datos.diseno')),
+                Response.genText(i18n.__('datos.desarollo')),
+                Datos.diseno()
             ];
         } else if (payload === 'ET1' || payload === 'ET2' || payload === 'ET3'){ 
             response = Response.genAskEmail();
