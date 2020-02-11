@@ -127,7 +127,7 @@ module.exports = class Receive {
         } else if (payload === 'EMPRENDEDOR') {
             response = [
                 Response.genText(i18n.__('datos.emprendedor')),
-                Datos.servicios()
+                Datos.etapa()
             ];
         } else if (payload === 'ET1' || payload === 'ET2' || payload === 'ET3'){ 
             response = Response.genAskEmail();
