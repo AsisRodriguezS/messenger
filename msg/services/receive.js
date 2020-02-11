@@ -121,11 +121,9 @@ module.exports = class Receive {
  
         let response;
         if (payload === 'GET_STARTED') {
-            response = [
-                Response.genNuxMessage(this.user),
-                Datos.servicios()
-            ]
-
+            response = Response.genNuxMessage(this.user);
+            response.push(Datos.servicios());
+            console.log(response.length);
         } else if (payload === 'EMPRENDEDOR') {
             response = [
                 Response.genText(i18n.__('datos.emprendedor')),
