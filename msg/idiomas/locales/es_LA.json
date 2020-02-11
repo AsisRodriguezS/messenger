@@ -9,7 +9,10 @@
         "et1": "1 - Idea",
         "et2": "2 - Modelo de negocio",
         "et3": "3 - Capital semilla",
-        "et4": "4 - Primeras ventas"
+        "et4": "4 - Primeras ventas",
+        "tr1": "No tengo sistema",
+        "tr2": "Mi sistema es insuficiente",
+        "tr3": "Mi sistema es costoso"
     },
     "get_started": {
         "welcome": "¡Hola {{user_first_name}}!. Te damos la bienvenida a Yoinn.mx, la empresa número uno en México en Innovación Digital.",
@@ -17,6 +20,7 @@
     },
     "datos": {
         "emprendedor": "¡Genial!. En Yoinn nos encantaría ayudarte a materializar tu visión.",
+        "transf": "¡Excelente! En Yoinn nos apasiona ayudar a las empresas a alcanzar sus objetivos a través de la tecnología.",
         "etapa": "¿En qué etapa de desarrollo se encuentra tu proyecto actualmente?",
         "email": "¡Excelente!. Da click en \"Email\" para proporcionarnos tu email y poder ponernos en contacto contigo.",
         "tel1": "¡Genial!. También sería de ayuda si pudieras proporcionarnos tu teléfono.",
@@ -24,7 +28,9 @@
         "neg": "Mas tarde",
         "titulo": "Yoinn.mx",
         "subtitulo": "Servicios Yoinn",
-        "subtituloE": "Etapa de proyecto"
+        "subtituloE": "Emprendimiento Digital",
+        "subtituloT": "Transformación Digital",
+        "subtituloD": "Diseño Web"
     },
     "despedida": {
         "pronto": "¡Muy bien {{user_first_name}}!. Nuestro equipo se pondrá en contacto contigo muy pronto.",

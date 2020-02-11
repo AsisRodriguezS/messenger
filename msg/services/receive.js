@@ -130,6 +130,11 @@ module.exports = class Receive {
                 Response.genText(i18n.__('datos.etapa')),
                 Datos.etapa()
             ];
+        } else if (payload === 'TRANSF') {
+            response = [
+                Response.genText(i18n.__('datos.transf')),
+                Datos.transf()
+            ];
         } else if (payload === 'ET1' || payload === 'ET2' || payload === 'ET3'){ 
             response = Response.genAskEmail();
         } else if (payload.includes('@') || payload === 'MAS_TARDE') {
