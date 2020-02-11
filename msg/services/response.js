@@ -57,25 +57,6 @@ module.exports = class Response {
         return response;
     }
 
-    static genAskEtapa () {
-        let etapa = this.genQuickReply(i18n.__('datos.etapa'), [
-            {
-                title: i18n.__('menu.et1'),
-                payload: 'ET1'
-            },
-            {
-                title: i18n.__('menu.et2'),
-                payload: 'ET2'
-            },
-            {
-                title: i18n.__('menu.et3'),
-                payload: 'ET3'
-            },
-        ], 'texto')
-
-        return etapa;
-    }
-
     static genAskEmail () {
         let email = this.genQuickReply(i18n.__('datos.email'), [
             {

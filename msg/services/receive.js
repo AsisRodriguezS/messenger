@@ -124,8 +124,11 @@ module.exports = class Receive {
             response = Response.genNuxMessage(this.user);
             response.push(Datos.servicios());
 
-        } else if (payload === 'EMPRENDEDOR' || payload === 'TRANSF' || payload === 'DISENO') {
-            response = Response.genAskEtapa();
+        } else if (payload === 'EMPRENDEDOR') {
+            response = [
+                Response.genText(i18n.__('datos.emprendedor')),
+                Datos.servicios()
+            ];
         } else if (payload === 'ET1' || payload === 'ET2' || payload === 'ET3'){ 
             response = Response.genAskEmail();
         } else if (payload.includes('@') || payload === 'MAS_TARDE') {
