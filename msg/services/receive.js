@@ -141,8 +141,14 @@ module.exports = class Receive {
                 Response.genText(i18n.__('datos.desarrollo')),
                 Datos.diseno()
             ];
-        } else if (payload === 'ET1' || payload === 'ET2' || payload === 'ET3'){ 
-            response = Response.genAskEmail();
+        } else if (payload === 'ET1' || payload === 'ET2' || payload === 'ET3' ||
+                   payload === 'TR1' || payload === 'TR2' || payload === 'TR3' ||
+                   payload === 'DN1' || payload === 'DN2' || payload === 'DN3'
+        ) {
+            response = [
+                Response.genText(i18n.__('datos.confirmacion', { user_first_name: this.user.firstName})),
+                Response.genAskEmail()
+            ];
         } else if (payload.includes('@') || payload === 'MAS_TARDE') {
             response = Response.genAskPhone(payload);
         } else if (payload.includes('+') || Number(payload) || payload === 'MAS_TARDE2') {
