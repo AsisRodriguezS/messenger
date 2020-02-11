@@ -12,7 +12,7 @@ const
         }
 
         static servicios () {
-            response = [
+            let response = [
                 Response.genGenericTemplate(
                     `${config.appUrl}/img/msn/tipodeservicio.png`,
                     i18n.__('datos.titulo'),
