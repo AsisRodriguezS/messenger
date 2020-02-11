@@ -64,8 +64,7 @@ module.exports = class Receive {
         let response;
 
         if (message.includes('empezar de nuevo') || message.includes('otra vez')) {
-            response = [];
-            response.push(Response.genNuxMessage(this.user));
+            response = Response.genNuxMessage(this.user);
             response.push(Datos.servicios());
         } //else {
         //     response = [
@@ -122,8 +121,7 @@ module.exports = class Receive {
  
         let response;
         if (payload === 'GET_STARTED') {
-            response = [];
-            response.push(Response.genNuxMessage(this.user));
+            response = Response.genNuxMessage(this.user);
             response.push(Datos.servicios());
 
         } else if (payload === 'EMPRENDEDOR' || payload === 'TRANSF' || payload === 'DISENO') {
