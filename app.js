@@ -25,9 +25,6 @@ app.set('view engine', 'handlebars');
 // Set server port and log message on console
 app.listen(process.env.PORT || port, () => console.log(`Webhook is listening in ${port}`));
 
-// Default get request
-// app.get('/', (req, res) => {
-//     res.send('GET request to homepage');
-// });
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/routes'));
