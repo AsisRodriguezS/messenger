@@ -142,7 +142,7 @@ module.exports = class Receive {
             response = [
                 Response.genText(i18n.__('chat_plugin.prompt', { user_first_name: this.user.firstName})),
                 Response.genText(i18n.__('get_started.guidance')),
-                Datos.servicios();
+                Datos.servicios()
             ];
         } else {
         response = {
