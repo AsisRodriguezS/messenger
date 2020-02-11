@@ -65,8 +65,8 @@ module.exports = class Receive {
 
         if (message.includes('empezar de nuevo') || message.includes('otra vez')) {
             response = [];
-            response = response.push(Response.genNuxMessage(this.user));
-            response = response.push(Datos.servicios());
+            response.push(Response.genNuxMessage(this.user));
+            response.push(Datos.servicios());
         } //else {
         //     response = [
         //         Response.genText(i18n.__('fallback.any', {
@@ -123,8 +123,8 @@ module.exports = class Receive {
         let response;
         if (payload === 'GET_STARTED') {
             response = [];
-            response = response.push(Response.genNuxMessage(this.user));
-            response = response.push(Datos.servicios());
+            response.push(Response.genNuxMessage(this.user));
+            response.push(Datos.servicios());
 
         } else if (payload === 'EMPRENDEDOR' || payload === 'TRANSF' || payload === 'DISENO') {
             response = Response.genAskEtapa();
