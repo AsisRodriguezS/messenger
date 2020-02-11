@@ -133,6 +133,7 @@ module.exports = class Receive {
         } else if (payload === 'TRANSF') {
             response = [
                 Response.genText(i18n.__('datos.transf')),
+                Response.genText(i18n.__('datos.situacion')),
                 Datos.transf()
             ];
         } else if (payload === 'ET1' || payload === 'ET2' || payload === 'ET3'){ 
