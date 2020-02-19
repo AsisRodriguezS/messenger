@@ -25,6 +25,7 @@ module.exports = class Receive {
 
                 if (message.quick_reply) {
                     responses = this.handleQuickReply();
+                    dato = responses.pop();
                 } else if (message.attachments) {
                     responses = this.handleAttachmentMessage();
                 } else if (message.text) {
@@ -192,12 +193,16 @@ module.exports = class Receive {
                 'Aplicación Web'
             ];
         } else if (payload.includes('@') || payload === 'MAS_TARDE') {
-            response = Response.genAskPhone(payload);
+            response = [
+                Response.genAskPhone(payload),
+                payload
+            ];
         } else if (payload.includes('+') || Number(payload) || payload === 'MAS_TARDE2') {
             response = [];
             response.push(Response.genText(i18n.__('despedida.pronto', { user_first_name: this.user.firstName})));
             response.push(Response.genText(i18n.__('despedida.pagina')));
             response.push(Response.urlButton(i18n.__('despedida.texto'), i18n.__('despedida.boton'), config.appUrl));
+            response.push(payload);
             
         } else if (payload.includes('CHAT-PLUGIN')) {
             response = [

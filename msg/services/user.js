@@ -11,6 +11,8 @@ module.exports = class User {
         this.servicio = '';
         this.proyecto = '';
         this.nombreProyecto = '';
+        this.email = '';
+        this.tel = '';
     }
     setProfile(profile) {
         this.firstName = profile.firstName;
