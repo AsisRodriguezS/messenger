@@ -83,6 +83,15 @@ app.post('/webhook', (req, res) => {
                 let receivedMessage = new Receive(users[senderPsid], webhookEvent);
                 dato = receivedMessage.handleMessage();
                 console.log(`El Dato es: ${dato}`);
+                if (dato === 'Emprendimiento Digital' || dato === 'Transformación Digital' || dato === 'Diseño Web') {
+                    users[senderPsid]['User']['servicio'] = dato;
+                }
+                if (dato === 'Idea' || dato === 'Modelo de Negocio' || dato === 'Capital semilla y/o primeras ventas' ||
+                    dato === 'No tengo sistema' || dato === 'Mi sistema es insuficiente' || dato === 'Mi sistema es costoso' ||
+                    dato === 'Landing Page' || dato === 'Tienda en Línea' || dato === 'Aplicación Web') {
+                    users[senderPsid]['User']['proyecto'] = dato;
+                }
+                console.log(users);
             }            
         });                
     } else {

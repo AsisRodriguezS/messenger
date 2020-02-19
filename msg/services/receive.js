@@ -55,7 +55,6 @@ module.exports = class Receive {
         } else {
             this.sendMessage(responses);
         }
-        console.log(dato);
         return dato;
     }
 
@@ -132,14 +131,69 @@ module.exports = class Receive {
                 Datos.diseno(),
                 'Diseño Web'
             ];
-        } else if (payload === 'ET1' || payload === 'ET2' || payload === 'ET3' ||
-                   payload === 'TR1' || payload === 'TR2' || payload === 'TR3' ||
-                   payload === 'DN1' || payload === 'DN2' || payload === 'DN3'
-        ) {
+        } else if (payload === 'ET1') {
             response = [
                 Response.genText(i18n.__('datos.confirmacion', { user_first_name: this.user.firstName})),
-                Response.genText(i18n.__('datos.proyecto'))
+                Response.genText(i18n.__('datos.proyecto')),
+                'Idea'
             ];
+        } else if (payload === 'ET2') {
+            response = [
+                Response.genText(i18n.__('datos.confirmacion', { user_first_name: this.user.firstName})),
+                Response.genText(i18n.__('datos.proyecto')),
+                'Modelo de Negocio'
+            ];
+        } else if (payload === 'ET3') {
+            response = [
+                Response.genText(i18n.__('datos.confirmacion', { user_first_name: this.user.firstName})),
+                Response.genText(i18n.__('datos.proyecto')),
+                'Capital semilla y/o primeras ventas'
+            ];
+        } else if (payload === 'TR1') {
+            response = [
+                Response.genText(i18n.__('datos.confirmacion', { user_first_name: this.user.firstName})),
+                Response.genText(i18n.__('datos.proyecto')),
+                'No tengo sistema'
+            ];
+        } else if (payload === 'TR2') {
+            response = [
+                Response.genText(i18n.__('datos.confirmacion', { user_first_name: this.user.firstName})),
+                Response.genText(i18n.__('datos.proyecto')),
+                'Mi sistema es insuficiente'
+            ];
+        } else if (payload === 'TR3') {
+            response = [
+                Response.genText(i18n.__('datos.confirmacion', { user_first_name: this.user.firstName})),
+                Response.genText(i18n.__('datos.proyecto')),
+                'Mi sistema es costoso'
+            ];
+        } else if (payload === 'DN1') {
+            response = [
+                Response.genText(i18n.__('datos.confirmacion', { user_first_name: this.user.firstName})),
+                Response.genText(i18n.__('datos.proyecto')),
+                'Landing Page'
+            ];
+        } else if (payload === 'DN2') {
+            response = [
+                Response.genText(i18n.__('datos.confirmacion', { user_first_name: this.user.firstName})),
+                Response.genText(i18n.__('datos.proyecto')),
+                'Tienda en Línea'
+            ];
+        } else if (payload === 'DN3') {
+            response = [
+                Response.genText(i18n.__('datos.confirmacion', { user_first_name: this.user.firstName})),
+                Response.genText(i18n.__('datos.proyecto')),
+                'Aplicación Web'
+            ];
+        // else if (payload === 'ET1' || payload === 'ET2' || payload === 'ET3' ||
+        //            payload === 'TR1' || payload === 'TR2' || payload === 'TR3' ||
+        //            payload === 'DN1' || payload === 'DN2' || payload === 'DN3'
+        // ) {
+        //     response = [
+        //         Response.genText(i18n.__('datos.confirmacion', { user_first_name: this.user.firstName})),
+        //         Response.genText(i18n.__('datos.proyecto'))
+        //     ];
+        // } 
         } else if (payload.includes('@') || payload === 'MAS_TARDE') {
             response = Response.genAskPhone(payload);
         } else if (payload.includes('+') || Number(payload) || payload === 'MAS_TARDE2') {

@@ -8,6 +8,8 @@ module.exports = class User {
         this.locale = '';
         this.timezone= '';
         this.gender = 'neutral';
+        this.servicio = '';
+        this.proyecto = '';
     }
     setProfile(profile) {
         this.firstName = profile.firstName;
