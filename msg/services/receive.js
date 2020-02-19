@@ -32,11 +32,9 @@ module.exports = class Receive {
                 }
             } else if (event.postback) {
                 responses = this.handlePostback();
-                console.log(responses.length);
-                if ((responses.length - 1) === 'string') {
+                if ((responses.length - 1) === typeof 'string') {
                     dato = responses.pop();
                 }
-                console.log(responses.length);
             } else if (event.referral) {
                 responses = this.handleReferral();
             }
@@ -57,7 +55,6 @@ module.exports = class Receive {
         } else {
             this.sendMessage(responses);
         }
-        console.log(dato);
         return dato;
     }
 
