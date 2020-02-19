@@ -82,7 +82,7 @@ app.post('/webhook', (req, res) => {
                 let dato;
                 let receivedMessage = new Receive(users[senderPsid], webhookEvent);
                 dato = receivedMessage.handleMessage();
-                console.log(dato);
+                console.log(`El Dato es: ${dato}`);
             }            
         });                
     } else {
