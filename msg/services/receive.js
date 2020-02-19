@@ -32,9 +32,11 @@ module.exports = class Receive {
                 }
             } else if (event.postback) {
                 responses = this.handlePostback();
+                console.log(responses.length);
                 if ((responses.length - 1) === 'string') {
                     dato = responses.pop();
                 }
+                console.log(responses.length);
             } else if (event.referral) {
                 responses = this.handleReferral();
             }
