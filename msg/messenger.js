@@ -89,9 +89,9 @@ app.post('/webhook', (req, res) => {
                            dato === 'No tengo sistema' || dato === 'Mi sistema es insuficiente' || dato === 'Mi sistema es costoso' ||
                            dato === 'Landing Page' || dato === 'Tienda en Línea' || dato === 'Aplicación Web') {
                     users[senderPsid]['proyecto'] = dato;
-                } else if (payload.includes('@') || payload === 'MAS_TARDE') {
+                } else if (dato.includes('@') || dato === 'MAS_TARDE') {
                     users[senderPsid]['email'] = dato;
-                } else if (payload.includes('+') || Number(payload) || payload === 'MAS_TARDE2') {
+                } else if (dato.includes('+') || Number(dato) || dato === 'MAS_TARDE2') {
                     users[senderPsid]['tel'] = dato;
                 } else if (typeof dato === 'string') {
                     users[senderPsid]['nombreProyecto'] = dato;

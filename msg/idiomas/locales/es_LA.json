@@ -28,7 +28,7 @@
         "situacion": "¿Cuál es la situación de tu negocio en este momento?",
         "desarrollo": "¿Qué tipo de desarrollo web tienes en mente?",
         "confirmacion": "¡Muy bien {{user_first_name}}! Ahora solo necesitamos tu información para que un asesor especializado pueda contactarte.",
-        "proyecto": "¿Cuál es el nombre de tu proyecto?",
+        "proyecto": "¿Cuál es el nombre de tu proyecto? (Escribelo en la barra de mensaje)",
         "email": "¡OK!. Da click en \"Email\" para proporcionarnos tu email y poder ponernos en contacto contigo.",
         "tel1": "¡Genial!. Da click en tu número telefónico para compartilo con nosotros",
         "tel2": "O si lo prefieres, puedes proporcionarnos tu teléfono.",
