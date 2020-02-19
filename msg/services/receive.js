@@ -32,7 +32,7 @@ module.exports = class Receive {
                 }
             } else if (event.postback) {
                 responses = this.handlePostback();
-                if ((responses.length - 1) === typeof 'string') {
+                if (typeof responses[responses.length - 1] === 'string') {
                     dato = responses.pop();
                 }
             } else if (event.referral) {
