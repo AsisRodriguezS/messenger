@@ -75,6 +75,7 @@ app.post('/webhook', (req, res) => {
                         console.log('Nuevo Perfil PSID:', senderPsid, 'con locale:', i18n.getLocale());
                         let receivedMessage = new Receive(users[senderPsid], webhookEvent);
                         receivedMessage.handleMessage();
+                        console.log(users);
                     });
             } else {
                 i18n.setLocale(users[senderPsid]. locale);
