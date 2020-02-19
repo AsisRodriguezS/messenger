@@ -66,25 +66,9 @@ module.exports = class Receive {
         if (message.includes('empezar de nuevo') || message.includes('otra vez')) {
             response = Response.genNuxMessage(this.user);
             response.push(Datos.servicios());
-        } //else {
-        //     response = [
-        //         Response.genText(i18n.__('fallback.any', {
-        //             message: this.webhookEvent.message.text
-        //         })
-        //         ),
-        //         Response.genQuickReply(i18n.__('get_started.guidance'), [
-        //             {
-        //                 title: i18n.__('menu.emprendedor'),
-        //                 payload: 'EMPRENDEDOR'
-        //             },
-        //             {
-        //                 title: i18n.__('menu.empresario'),
-        //                 payload: 'EMPRESARIO'
-        //             }
-        //         ])                   
-        //     ];
-        // }
-
+        } else {
+            response = Response.genAskEmail()
+        }
         return response;
     }
 
@@ -147,7 +131,7 @@ module.exports = class Receive {
         ) {
             response = [
                 Response.genText(i18n.__('datos.confirmacion', { user_first_name: this.user.firstName})),
-                Response.genAskEmail()
+                Response.genText(i18n.__('datos.proyecto'))
             ];
         } else if (payload.includes('@') || payload === 'MAS_TARDE') {
             response = Response.genAskPhone(payload);
