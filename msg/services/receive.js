@@ -55,6 +55,7 @@ module.exports = class Receive {
         } else {
             this.sendMessage(responses);
         }
+        console.log(dato);
         return dato;
     }
 

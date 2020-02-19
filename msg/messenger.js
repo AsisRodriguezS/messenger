@@ -79,8 +79,9 @@ app.post('/webhook', (req, res) => {
             } else {
                 i18n.setLocale(users[senderPsid]. locale);
                 console.log('El perfil ya existe, PSID:', senderPsid, 'con locale:', i18n.getLocale());
+                let dato;
                 let receivedMessage = new Receive(users[senderPsid], webhookEvent);
-                let dato = receivedMessage.handleMessage();
+                dato = receivedMessage.handleMessage();
                 console.log(dato);
             }            
         });                
