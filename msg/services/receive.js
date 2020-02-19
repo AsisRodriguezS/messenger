@@ -14,9 +14,10 @@ module.exports = class Receive {
     // Check if the Event is a message or postback and
     // call the appropriate handler function
     handleMessage() {
-        let event = this.webhookEvent;
-
-        let responses;
+        let 
+            event = this.webhookEvent,
+            responses,
+            dato;
 
         try {
             if (event.message) {
@@ -30,10 +31,9 @@ module.exports = class Receive {
                     responses = this.handleTextMessage();
                 }
             } else if (event.postback) {
-                console.log('Oh no');
                 responses = this.handlePostback();
+                dato = responses.pop();
             } else if (event.referral) {
-                console.log('Oh si');
                 responses = this.handleReferral();
             }
         } catch(error) {
@@ -53,6 +53,7 @@ module.exports = class Receive {
         } else {
             this.sendMessage(responses);
         }
+        return dato;
     }
 
     // Handles messages events with text
@@ -111,19 +112,22 @@ module.exports = class Receive {
             response = [
                 Response.genText(i18n.__('datos.emprendedor')),
                 Response.genText(i18n.__('datos.etapa')),
-                Datos.etapa()
+                Datos.etapa(),
+                'Emprendimiento Digital'
             ];
         } else if (payload === 'TRANSF') {
             response = [
                 Response.genText(i18n.__('datos.transf')),
                 Response.genText(i18n.__('datos.situacion')),
-                Datos.transf()
+                Datos.transf(),
+                'Transformación Digital'
             ];
         } else if (payload === 'DISENO') {
             response = [
                 Response.genText(i18n.__('datos.diseno')),
                 Response.genText(i18n.__('datos.desarrollo')),
-                Datos.diseno()
+                Datos.diseno(),
+                'Diseño Web'
             ];
         } else if (payload === 'ET1' || payload === 'ET2' || payload === 'ET3' ||
                    payload === 'TR1' || payload === 'TR2' || payload === 'TR3' ||

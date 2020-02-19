@@ -75,13 +75,13 @@ app.post('/webhook', (req, res) => {
                         console.log('Nuevo Perfil PSID:', senderPsid, 'con locale:', i18n.getLocale());
                         let receivedMessage = new Receive(users[senderPsid], webhookEvent);
                         receivedMessage.handleMessage();
-                        console.log(users);
                     });
             } else {
                 i18n.setLocale(users[senderPsid]. locale);
                 console.log('El perfil ya existe, PSID:', senderPsid, 'con locale:', i18n.getLocale());
                 let receivedMessage = new Receive(users[senderPsid], webhookEvent);
-                receivedMessage.handleMessage();
+                dato = receivedMessage.handleMessage();
+                console.log(dato);
             }            
         });                
     } else {
