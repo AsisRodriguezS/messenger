@@ -29,6 +29,9 @@ module.exports = class Receive {
                     responses = this.handleAttachmentMessage();
                 } else if (message.text) {
                     responses = this.handleTextMessage();
+                    if (typeof responses[responses.length - 1] === 'string') {
+                        dato = responses.pop();
+                    }
                 }
             } else if (event.postback) {
                 responses = this.handlePostback();
@@ -66,11 +69,14 @@ module.exports = class Receive {
 
         let response;
 
-        if (message.includes('empezar de nuevo') || message.includes('otra vez')) {
+        if (message.includes('otra vez')) {
             response = Response.genNuxMessage(this.user);
             response.push(Datos.servicios());
         } else {
-            response = Response.genAskEmail()
+            response = [
+                Response.genAskEmail(),
+                message
+            ]
         }
         return response;
     }
@@ -185,15 +191,6 @@ module.exports = class Receive {
                 Response.genText(i18n.__('datos.proyecto')),
                 'Aplicación Web'
             ];
-        // else if (payload === 'ET1' || payload === 'ET2' || payload === 'ET3' ||
-        //            payload === 'TR1' || payload === 'TR2' || payload === 'TR3' ||
-        //            payload === 'DN1' || payload === 'DN2' || payload === 'DN3'
-        // ) {
-        //     response = [
-        //         Response.genText(i18n.__('datos.confirmacion', { user_first_name: this.user.firstName})),
-        //         Response.genText(i18n.__('datos.proyecto'))
-        //     ];
-        // } 
         } else if (payload.includes('@') || payload === 'MAS_TARDE') {
             response = Response.genAskPhone(payload);
         } else if (payload.includes('+') || Number(payload) || payload === 'MAS_TARDE2') {

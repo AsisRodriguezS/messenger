@@ -85,11 +85,12 @@ app.post('/webhook', (req, res) => {
                 console.log(`El Dato es: ${dato}`);
                 if (dato === 'Emprendimiento Digital' || dato === 'Transformación Digital' || dato === 'Diseño Web') {
                     users[senderPsid]['servicio'] = dato;
-                }
-                if (dato === 'Idea' || dato === 'Modelo de Negocio' || dato === 'Capital semilla y/o primeras ventas' ||
-                    dato === 'No tengo sistema' || dato === 'Mi sistema es insuficiente' || dato === 'Mi sistema es costoso' ||
-                    dato === 'Landing Page' || dato === 'Tienda en Línea' || dato === 'Aplicación Web') {
+                } else if (dato === 'Idea' || dato === 'Modelo de Negocio' || dato === 'Capital semilla y/o primeras ventas' ||
+                           dato === 'No tengo sistema' || dato === 'Mi sistema es insuficiente' || dato === 'Mi sistema es costoso' ||
+                           dato === 'Landing Page' || dato === 'Tienda en Línea' || dato === 'Aplicación Web') {
                     users[senderPsid]['proyecto'] = dato;
+                } else if (typeof dato === 'string') {
+                    users[senderPsid]['nombreProyecto'] = dato;
                 }
                 console.log(users);
             }            

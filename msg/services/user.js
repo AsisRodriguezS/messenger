@@ -10,6 +10,7 @@ module.exports = class User {
         this.gender = 'neutral';
         this.servicio = '';
         this.proyecto = '';
+        this.nombreProyecto = '';
     }
     setProfile(profile) {
         this.firstName = profile.firstName;
