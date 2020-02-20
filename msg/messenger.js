@@ -103,41 +103,62 @@ app.post('/webhook', (req, res) => {
         // Returns a '404 Not Found' if event is not from a page subscription
         res.sendStatus(404);
     }
-    });
+});
     
 
-    //Set up your App's Messenger Profile
-    app.get('/profile', (req, res) => {
-        let token = req.query["verify_token"];
-        let mode = req.query['mode'];
+//Set up your App's Messenger Profile
+app.get('/profile', (req, res) => {
+    let token = req.query["verify_token"];
+    let mode = req.query['mode'];
 
-        if (!config.webhookUrl.startsWith('https://')) {
-            res.status(200).send('Error - se necesita una API_URL segura en el archivo .env');
-        }
-        let Profile = require('./services/mProfile');
-        Profile = new Profile();
+    if (!config.webhookUrl.startsWith('https://')) {
+        res.status(200).send('Error - se necesita una API_URL segura en el archivo .env');
+    }
+    let Profile = require('./services/mProfile');
+    Profile = new Profile();
 
-        // Checks if a token and mode is in the query string of the request
-        if (mode && token) {
-            if (token === config.verifyToken) {
-                if (mode === 'profile' || mode === 'all') {
-                    Profile.setThread();
-                    res.write(`<p>Configurando el perfil de messenger de la página ${config.pageId}</p>`);
-                }
-                if (mode === 'domains' || mode === 'all') {
-                    Profile.setWhitelistedDomains();
-                    res.write(`<p>Dominios permitidos: ${config.setWhitelistedDomains}</p>`);
-                }
-                res.status(200).end();
-            } else {
-                // Responds with '403 Forbidden' if verify tokens do not match
-                res.sendStatus(403);
+    // Checks if a token and mode is in the query string of the request
+    if (mode && token) {
+        if (token === config.verifyToken) {
+            if (mode === 'profile' || mode === 'all') {
+                Profile.setThread();
+                res.write(`<p>Configurando el perfil de messenger de la página ${config.pageId}</p>`);
             }
+            if (mode === 'domains' || mode === 'all') {
+                Profile.setWhitelistedDomains();
+                res.write(`<p>Dominios permitidos: ${config.setWhitelistedDomains}</p>`);
+            }
+            res.status(200).end();
         } else {
-            // Returns a '404 Not Found' if mode or token are missing
-            res.sendStatus(404);
+            // Responds with '403 Forbidden' if verify tokens do not match
+            res.sendStatus(403);
         }
+    } else {
+        // Returns a '404 Not Found' if mode or token are missing
+        res.sendStatus(404);
+    }
 
-    });
-        
-    module.exports = app;
+});
+
+// Verify that the callback came from Facebook.
+function verifyRequestSignature(req, res, buf) {
+    var signature = req.headers["x-hub-signature"];
+  
+    if (!signature) {
+        console.log("Couldn't validate the signature.");
+    } else {
+        var elements = signature.split("=");
+        var signatureHash = elements[1];
+        var expectedHash = crypto
+            .createHmac("sha1", config.appSecret)
+            .update(buf)
+            .digest("hex");
+        if (signatureHash != expectedHash) {
+            throw new Error("Couldn't validate the request signature.");
+        }
+    }
+}
+
+config.checkEnvVariables();
+    
+module.exports = app;

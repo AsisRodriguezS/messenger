@@ -1,5 +1,14 @@
 'use strict';
 
+const ENV_VARS = [
+    "PAGE_ID",
+    "APP_ID",
+    "PAGE_ACCESS_TOKEN",
+    "APP_SECRET",
+    "VERIFY_TOKEN",
+    "APP_URL",
+];
+
 module.exports = {
     // Messenger Platform API
     mPlatformDomain: "https://graph.facebook.com",
@@ -29,5 +38,23 @@ module.exports = {
     
     get whitelistedDomains() {
         return [this.appUrl];
+    },
+
+    checkEnvVariables: function() {
+        ENV_VARS.forEach(function(key) {
+            if (!process.env[key]) {
+                console.log("WARNING: Missing the environment variable " + key);
+            } else {
+                // Check that urls use https
+                if (["APP_URL", "SHOP_URL"].includes(key)) {
+                    const url = process.env[key];
+                    if (!url.startsWith("https://")) {
+                        console.log(
+                            "WARNING: Your " + key + ' does not begin with "https://"'
+                        );
+                    }
+                }
+            }
+        });
     }
 }
