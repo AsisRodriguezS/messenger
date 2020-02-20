@@ -16,7 +16,7 @@ const
 app.use(express.urlencoded({extended: true}));
 
 // Parse application/json
-app.use(express.json({ verify: verifyRequestSignature}));
+app.use(express.json());
 
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exhbs());

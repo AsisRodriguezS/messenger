@@ -14,7 +14,8 @@ app = express();
 // PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 let users = {};
-// let referral = false;
+
+app.use(express.json({ verify: verifyRequestSignature}));
 
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
